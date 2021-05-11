@@ -1,25 +1,115 @@
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainMenu extends JFrame {
     BackgroundImageTitle backgroundImageTitle = new BackgroundImageTitle();
-    JButton jButtons[] = new JButton[4];
-    JPanel jPanels[] = new JPanel[4];
-    JPanel jPanelsInvisible[] = new JPanel[5];
+    JButton jButtons[] = new JButton[5];
+    JPanel jPanels[] = new JPanel[5];
+    JPanel jPanelsInvisible[] = new JPanel[6];
     JLabel jLabel;
+    Icon icon;
 
     public MainMenu(){
         //INIT COMPONENT
         initComponent();
 
         setSize(1280, 720);
-        this.setTitle("AWSttle"); //titulo
+        this.setTitle("Awsttle"); //titulo
 
         Toolkit pantalla = Toolkit.getDefaultToolkit();
+        setIconImage(pantalla.getImage("src/Images/Logo/game_icon.png"));
         setLocation(pantalla.getScreenSize().width/2 - getWidth()/2,pantalla.getScreenSize().height/2 - getHeight()/2);
 
 
+        jButtons[0].addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                ButtonModel button0 = jButtons[0].getModel();
 
+                if (button0.isPressed()) {
+                    icon = new ImageIcon("src/Images/Icons/fight_pressed.png");
+                    jButtons[0].setIcon(icon);
+                }
+
+                else {
+                    icon = new ImageIcon("src/Images/Icons/fight.png");
+                    jButtons[0].setIcon(icon);
+                }
+            }
+        });
+
+        jButtons[1].addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                ButtonModel button1 = jButtons[1].getModel();
+
+                if (button1.isPressed()) {
+                    icon = new ImageIcon("src/Images/Icons/choose_fighter_pressed.png");
+                    jButtons[1].setIcon(icon);
+                }
+
+                else {
+                    icon = new ImageIcon("src/Images/Icons/choose_fighter.png");
+                    jButtons[1].setIcon(icon);
+                }
+            }
+        });
+
+        jButtons[2].addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                ButtonModel button2 = jButtons[2].getModel();
+
+                if (button2.isPressed()) {
+                    icon = new ImageIcon("src/Images/Icons/choose_weapon_pressed.png");
+                    jButtons[2].setIcon(icon);
+                }
+
+                else {
+                    icon = new ImageIcon("src/Images/Icons/choose_weapon.png");
+                    jButtons[2].setIcon(icon);
+                }
+            }
+        });
+
+        jButtons[3].addChangeListener(new ChangeListener() {
+
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                ButtonModel button3 = jButtons[3].getModel();
+
+                if (button3.isPressed()) {
+                    icon = new ImageIcon("src/Images/Icons/ranking_pressed.png");
+                    jButtons[3].setIcon(icon);
+                }
+
+                else {
+                    icon = new ImageIcon("src/Images/Icons/ranking.png");
+                    jButtons[3].setIcon(icon);
+                }
+            }
+        });
+
+        jButtons[4].addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                ButtonModel button4 = jButtons[4].getModel();
+
+                if (button4.isPressed()) {
+                    icon = new ImageIcon("src/Images/Icons/exit_pressed.png");
+                    jButtons[4].setIcon(icon);
+                }
+
+                else {
+                    icon = new ImageIcon("src/Images/Icons/exit.png");
+                    jButtons[4].setIcon(icon);
+                }
+            }
+        });
 
         jPanels[0].add(jLabel);
         jPanels[1].add(jButtons[0]);
@@ -27,6 +117,7 @@ public class MainMenu extends JFrame {
         jPanels[2].add(jPanelsInvisible[4]);
         jPanels[2].add(jButtons[2]);
         jPanels[3].add(jButtons[3]);
+        jPanels[4].add(jButtons[4]);
 
         backgroundImageTitle.add(jPanelsInvisible[0]);
         backgroundImageTitle.add(jPanels[0]);
@@ -36,6 +127,8 @@ public class MainMenu extends JFrame {
         backgroundImageTitle.add(jPanels[2]);
         backgroundImageTitle.add(jPanelsInvisible[3]);
         backgroundImageTitle.add(jPanels[3]);
+        backgroundImageTitle.add(jPanelsInvisible[5]);
+        backgroundImageTitle.add(jPanels[4]);
 
         add(backgroundImageTitle);
 
@@ -46,32 +139,28 @@ public class MainMenu extends JFrame {
 
     public void initComponent() {
         //PANEL 1
-        jLabel = new JLabel("Awsttle");
-
-        //CAMBIAR FUENTE Y TAMAÑO LABEL[0]
-        jLabel.setFont(new Font("comic sans ms", Font.BOLD, 50));
+        icon = new ImageIcon("src/Images/Logo/logo.png");
+        jLabel = new JLabel();
+        jLabel.setPreferredSize(new Dimension(400,150));
+        jLabel.setIcon(icon);
 
         //BOTONES
-        jButtons[0] = new JButton("¡FIGHT!");
-        jButtons[1] = new JButton("Choose Fighter");
-        jButtons[2] = new JButton("Choose Weapon");
-        jButtons[3] = new JButton("Ranking");
+        icon = new ImageIcon("src/Images/Icons/fight.png");
+        jButtons[0] = new JButton(icon); // Fight button
+        icon = new ImageIcon("src/Images/Icons/choose_fighter.png");
+        jButtons[1] = new JButton(icon); // Choose fighter button
+        icon = new ImageIcon("src/Images/Icons/choose_weapon.png");
+        jButtons[2] = new JButton(icon); // Choose Weapon button
+        icon = new ImageIcon("src/Images/Icons/ranking.png");
+        jButtons[3] = new JButton(icon); // Ranking button
+        icon = new ImageIcon("src/Images/Icons/exit.png");
+        jButtons[4] = new JButton(icon); // Exit Button
 
-        jButtons[0].setPreferredSize(new Dimension(240, 50));
-        jButtons[1].setPreferredSize(new Dimension(240, 50));
-        jButtons[2].setPreferredSize(new Dimension(240, 50));
-        jButtons[3].setPreferredSize(new Dimension(240, 50));
-
-        //COLOR BOTONES
-        for (int i = 0; i< jButtons.length; i++) {
-            jButtons[i].setBackground(new java.awt.Color(253, 253, 150));
+        for (int i = 0; i < jButtons.length; i++){
+            jButtons[i].setContentAreaFilled(false);
+            jButtons[i].setBorderPainted(false);
+            jButtons[i].setPreferredSize(new Dimension(240, 50));
         }
-
-        //CAMBIAR FUENTE Y TAMAÑO BOTONES
-        jButtons[0].setFont(new Font("Helvetica", Font.PLAIN, 20));
-        jButtons[1].setFont(new Font("Arial", Font.PLAIN, 20));
-        jButtons[2].setFont(new Font("Action Man Extended", Font.PLAIN, 20));
-        jButtons[3].setFont(new Font("Action Man Shaded", Font.PLAIN, 20));
 
         //INICIAR JPANEL
 
@@ -86,22 +175,27 @@ public class MainMenu extends JFrame {
         jPanels[1].setPreferredSize(new Dimension(1280, 60));
         jPanels[2].setPreferredSize(new Dimension(1280, 60));
         jPanels[3].setPreferredSize(new Dimension(1280, 60));
+        jPanels[4].setPreferredSize(new Dimension(1280, 60));
 
-        jPanelsInvisible[0].setPreferredSize(new Dimension(1280, 60));
-        jPanelsInvisible[1].setPreferredSize(new Dimension(1280, 140));
+        jPanelsInvisible[0].setPreferredSize(new Dimension(1280, 20));
+        jPanelsInvisible[1].setPreferredSize(new Dimension(1280, 60));
         jPanelsInvisible[2].setPreferredSize(new Dimension(1280, 20));
         jPanelsInvisible[3].setPreferredSize(new Dimension(1280, 20));
-        jPanelsInvisible[4].setPreferredSize(new Dimension(160, 50));
+        jPanelsInvisible[4].setPreferredSize(new Dimension(60, 50));
+        jPanelsInvisible[5].setPreferredSize(new Dimension(1280, 20));
 
-        // jPanels[0].setOpaque(false);
+        jPanels[0].setOpaque(false);
         jPanels[1].setOpaque(false);
         jPanels[2].setOpaque(false);
         jPanels[3].setOpaque(false);
+        jPanels[4].setOpaque(false);
+
         jPanelsInvisible[0].setOpaque(false);
         jPanelsInvisible[1].setOpaque(false);
         jPanelsInvisible[2].setOpaque(false);
         jPanelsInvisible[3].setOpaque(false);
         jPanelsInvisible[4].setOpaque(false);
+        jPanelsInvisible[5].setOpaque(false);
     }
 }
 
