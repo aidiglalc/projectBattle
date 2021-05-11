@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class BackgroundImageTitle extends JPanel {
-    ImageIcon image = new ImageIcon("src/Images/TitleBackground.jpg");
+    ImageIcon image = new ImageIcon("src/Images/Backgrounds/TitleBackground.jpg");
 
     public BackgroundImageTitle() {
 

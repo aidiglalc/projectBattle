@@ -81,23 +81,17 @@ VALUES ("Dagger", 0, 3, "Human, Elf", null, 10),
 ("Dirk", 0, 4, "Human, Elf, Dwarf", null, 12),
 ("Two-handed Axe", 5, 0, "Dwarf", null, 20);
 
-select * from weapons;
-
 INSERT INTO race(race, hp, strength, defense, agility, speed, race_points)
 VALUES ("Human", 50, 5, 3, 6, 5, 20),
 ("Elf", 40, 4, 2, 7, 7, 19),
 ("Dwarf", 60, 6, 4, 5, 3, 21);
 
-select * from race;
-
 INSERT INTO warriors(warrior_name, warrior_race, warrior_image_path)
-VALUES ("Erdrick", 1, null),
-("Firion", 1, null),
-("Taegen", 2, null),
-("Valindra", 2, null),
-("Saphielle", 2, null),
-("Mukhir", 3, null),
-("Thalgreak", 3, null),
-("Gathul", 3, null);
-
-select * from warriors;
+VALUES ("Erdrick", 1, "src/Images/Characters/Human_1.jpg"),
+("Firion", 1, "src/Images/Characters/Human_2.jpg"),
+("Valindra", 2, "src/Images/Characters/Elf_1.jpg"),
+("Taegen", 2, "src/Images/Characters/Elf_2.jpg"),
+("Saphielle", 2, "src/Images/Characters/Elf_3.jpg"),
+("Mukhir", 3, "src/Images/Characters/Dwarf_1.jpg"),
+("Thalgreak", 3, "src/Images/Characters/Dwarf_2.jpg"),
+("Gathul", 3, "src/Images/Characters/Dwarf_3.jpg");

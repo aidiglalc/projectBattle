@@ -6,12 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainMenu extends JFrame {
-    BackgroundImageTitle backgroundImageTitle = new BackgroundImageTitle();
-    JButton jButtons[] = new JButton[5];
-    JPanel jPanels[] = new JPanel[5];
-    JPanel jPanelsInvisible[] = new JPanel[6];
-    JLabel jLabel;
-    Icon icon;
+    private BackgroundImageTitle backgroundImageTitle = new BackgroundImageTitle();
+    private JButton jButtons[] = new JButton[5];
+    private JPanel jPanels[] = new JPanel[5];
+    private JPanel jPanelsInvisible[] = new JPanel[6];
+    private JLabel jLabel;
+    private Icon icon;
 
     public MainMenu(){
         //INIT COMPONENT
@@ -102,11 +102,13 @@ public class MainMenu extends JFrame {
                 if (button4.isPressed()) {
                     icon = new ImageIcon("src/Images/Icons/exit_pressed.png");
                     jButtons[4].setIcon(icon);
+                    dispose();
                 }
 
                 else {
                     icon = new ImageIcon("src/Images/Icons/exit.png");
                     jButtons[4].setIcon(icon);
+
                 }
             }
         });
