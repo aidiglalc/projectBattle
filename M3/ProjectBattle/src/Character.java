@@ -4,17 +4,18 @@ import java.util.ArrayList;
 
 public class Character {
     private int warrior_id;
-    private String warrior_name, warrior_image_path, race;
+    private String warrior_name, warrior_image_path, warrior_lore, race;
     private int hp, strength, defense, agility, speed, race_points;
 
     public Character() {
 
     };
 
-    public Character(int warrior_id, String warrior_name, String warrior_image_path, String race, int hp, int strength, int defense, int agility, int speed, int race_points) {
+    public Character(int warrior_id, String warrior_name, String warrior_image_path, String warrior_lore, String race, int hp, int strength, int defense, int agility, int speed, int race_points) {
         this.warrior_id = warrior_id;
         this.warrior_name = warrior_name;
         this.warrior_image_path = warrior_image_path;
+        this.warrior_lore = warrior_lore;
         this.race = race;
         this.hp = hp;
         this.strength = strength;
@@ -46,6 +47,14 @@ public class Character {
 
     public void setWarrior_image_path(String warrior_image_path) {
         this.warrior_image_path = warrior_image_path;
+    }
+
+    public String getWarrior_lore() {
+        return warrior_lore;
+    }
+
+    public void setWarrior_lore(String warrior_lore) {
+        this.warrior_lore = warrior_lore;
     }
 
     public String getRace() {
@@ -125,7 +134,7 @@ public class Character {
         String url = "jdbc:mysql://localhost/battle_database?serverTimezone=UTC";
         String user = "root";
         String password = "t32i6zcf9893715";
-        String query = "SELECT warriors.warrior_id, warriors.warrior_name, warriors.warrior_image_path, race.race, race.hp, race.strength,\n" +
+        String query = "SELECT warriors.warrior_id, warriors.warrior_name, warriors.warrior_image_path, warriors.warrior_lore, race.race, race.hp, race.strength,\n" +
                 "race.defense, race.agility, race.speed, race.race_points FROM warriors INNER JOIN race ON warriors.warrior_race = race.race_id " +
                 "WHERE race.race = \"" + race + "\";";
         try {
@@ -134,9 +143,9 @@ public class Character {
             Statement stm = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             ResultSet rs = stm.executeQuery(query);
             while (rs.next()) {
-                characters.add(new Character(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
-                        rs.getInt(5), rs.getInt(6),rs.getInt(7), rs.getInt(8),
-                        rs.getInt(9), rs.getInt(10)));
+                characters.add(new Character(rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4),
+                        rs.getString(5), rs.getInt(6), rs.getInt(7),rs.getInt(8), rs.getInt(9),
+                        rs.getInt(10), rs.getInt(11)));
             }
 
         } catch (SQLException throwables) {

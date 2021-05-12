@@ -1,12 +1,8 @@
-import java.awt.*;
-import java.io.File;
-import java.util.Arrays;
-
 public class Main {
     public static void main(String[] args) {
 //        new MainMenu();
 //        new RaceSelectionMenu();
-          new Elf();
+          new ElfSelectionMenu();
 //        System.out.println(new Character().getRace("Human"));
 //        System.out.println(new Character().getRace("Elf"));
 //        System.out.println(new Character().getRace("Dwarf"));

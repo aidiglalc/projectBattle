@@ -28,6 +28,7 @@ warrior_id INTEGER AUTO_INCREMENT PRIMARY KEY,
 warrior_name VARCHAR(25),
 warrior_race INTEGER,
 warrior_image_path VARCHAR(100),
+warrior_lore VARCHAR(100),
 FOREIGN KEY (warrior_race) REFERENCES race(race_id)
 );
 
@@ -86,12 +87,12 @@ VALUES ("Human", 50, 5, 3, 6, 5, 20),
 ("Elf", 40, 4, 2, 7, 7, 19),
 ("Dwarf", 60, 6, 4, 5, 3, 21);
 
-INSERT INTO warriors(warrior_name, warrior_race, warrior_image_path)
-VALUES ("Erdrick", 1, "Human_1.jpg"),
-("Firion", 1, "Human_2.jpg"),
-("Valindra", 2, "Elf_1.jpg"),
-("Taegen", 2, "Elf_2.jpg"),
-("Saphielle", 2, "Elf_3.jpg"),
-("Mukhir", 3, "Dwarf_1.jpg"),
-("Thalgreak", 3, "Dwarf_2.jpg"),
-("Gathul", 3, "Dwarf_3.jpg");
+INSERT INTO warriors(warrior_name, warrior_race, warrior_image_path, warrior_lore)
+VALUES ("Erdrick", 1, "Human_1.jpg", null),
+("Firion", 1, "Human_2.jpg", null),
+("Valindra", 2, "Elf_1.jpg", "<html>She embarked on an adventure to reclaim the eye of the sun.</html>"),
+("Taegen", 2, "Elf_2.jpg", "<html>Cursed by a Demon he seeks the cure to see the sun again.</html>"),
+("Saphielle", 2, "Elf_3.jpg", "<html>She left the elf city to seek adventure and see the beauty of the outside world.</html>"),
+("Mukhir", 3, "Dwarf_1.jpg", null),
+("Thalgreak", 3, "Dwarf_2.jpg", null),
+("Gathul", 3, "Dwarf_3.jpg", null);
