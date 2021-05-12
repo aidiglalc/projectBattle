@@ -1,6 +1,6 @@
 # projectBattle
 
-# PERSONAL INFORMATION ABOUT US
+# PERSONAL INFORMATION ABOUT ME
 
 Aida Iglesias Alcalá
 
