@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class Elf extends JFrame {
@@ -46,7 +47,7 @@ public class Elf extends JFrame {
         setVisible(true);
     }
     public void initComponent() {
-        elves = new Character().getRace("Human");
+        elves = new Character().getRace("Elf");
         System.out.println(elves);
 
         for(int i = 0; i < characterPanel.length ; i++){
@@ -76,7 +77,8 @@ public class Elf extends JFrame {
 
         for (int i = 0; i < elves.size(); i++) {
             labelCounter = i * 5 + i;
-            ImageIcon imageIcon = new ImageIcon(elves.get(i).getWarrior_image_path());
+            ImageIcon imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                    File.separator + "Characters" + File.separator + elves.get(i).getWarrior_image_path());
             ImageIcon image = new ImageIcon(imageIcon.getImage().getScaledInstance(200, 250, Image.SCALE_DEFAULT));
             buttons[i] = new JButton(image);
             buttons[i].setMinimumSize(new Dimension(20, 20));

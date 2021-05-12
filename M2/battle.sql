@@ -87,11 +87,11 @@ VALUES ("Human", 50, 5, 3, 6, 5, 20),
 ("Dwarf", 60, 6, 4, 5, 3, 21);
 
 INSERT INTO warriors(warrior_name, warrior_race, warrior_image_path)
-VALUES ("Erdrick", 1, "src/Images/Characters/Human_1.jpg"),
-("Firion", 1, "src/Images/Characters/Human_2.jpg"),
-("Valindra", 2, "src/Images/Characters/Elf_1.jpg"),
-("Taegen", 2, "src/Images/Characters/Elf_2.jpg"),
-("Saphielle", 2, "src/Images/Characters/Elf_3.jpg"),
-("Mukhir", 3, "src/Images/Characters/Dwarf_1.jpg"),
-("Thalgreak", 3, "src/Images/Characters/Dwarf_2.jpg"),
-("Gathul", 3, "src/Images/Characters/Dwarf_3.jpg");
+VALUES ("Erdrick", 1, "Human_1.jpg"),
+("Firion", 1, "Human_2.jpg"),
+("Valindra", 2, "Elf_1.jpg"),
+("Taegen", 2, "Elf_2.jpg"),
+("Saphielle", 2, "Elf_3.jpg"),
+("Mukhir", 3, "Dwarf_1.jpg"),
+("Thalgreak", 3, "Dwarf_2.jpg"),
+("Gathul", 3, "Dwarf_3.jpg");
