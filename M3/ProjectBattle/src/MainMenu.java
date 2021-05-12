@@ -1,9 +1,7 @@
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MainMenu extends JFrame {
     private BackgroundImageTitle backgroundImageTitle = new BackgroundImageTitle();
@@ -14,9 +12,9 @@ public class MainMenu extends JFrame {
     private Icon icon;
 
     public MainMenu(){
-        //INIT COMPONENT
         initComponent();
 
+        // We set the title, resolution and the icon of the game, making it appear at the center of the screen when we open the app
         setSize(1280, 720);
         this.setTitle("Awsttle"); //titulo
 
@@ -24,92 +22,86 @@ public class MainMenu extends JFrame {
         setIconImage(pantalla.getImage("src/Images/Logo/game_icon.png"));
         setLocation(pantalla.getScreenSize().width/2 - getWidth()/2,pantalla.getScreenSize().height/2 - getHeight()/2);
 
+        // We make every button to change image when presses and change back to normal. The actions of the button will be activated when the button is released
 
-        jButtons[0].addChangeListener(new ChangeListener() {
+        jButtons[0].addMouseListener(new MouseAdapter() {
             @Override
-            public void stateChanged(ChangeEvent e) {
-                ButtonModel button0 = jButtons[0].getModel();
+            public void mousePressed(MouseEvent e) {
+                super.mouseClicked(e);
+                icon = new ImageIcon("src/Images/Icons/fight_pressed.png");
+                jButtons[0].setIcon(icon);
+            }
 
-                if (button0.isPressed()) {
-                    icon = new ImageIcon("src/Images/Icons/fight_pressed.png");
-                    jButtons[0].setIcon(icon);
-                }
-
-                else {
-                    icon = new ImageIcon("src/Images/Icons/fight.png");
-                    jButtons[0].setIcon(icon);
-                }
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                icon = new ImageIcon("src/Images/Icons/fight.png");
+                jButtons[0].setIcon(icon);
             }
         });
 
-        jButtons[1].addChangeListener(new ChangeListener() {
+        jButtons[1].addMouseListener(new MouseAdapter() {
             @Override
-            public void stateChanged(ChangeEvent e) {
-                ButtonModel button1 = jButtons[1].getModel();
+            public void mousePressed(MouseEvent e) {
+                super.mouseClicked(e);
+                icon = new ImageIcon("src/Images/Icons/choose_fighter_pressed.png");
+                jButtons[1].setIcon(icon);
+            }
 
-                if (button1.isPressed()) {
-                    icon = new ImageIcon("src/Images/Icons/choose_fighter_pressed.png");
-                    jButtons[1].setIcon(icon);
-                }
-
-                else {
-                    icon = new ImageIcon("src/Images/Icons/choose_fighter.png");
-                    jButtons[1].setIcon(icon);
-                }
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                icon = new ImageIcon("src/Images/Icons/choose_fighter.png");
+                jButtons[1].setIcon(icon);
             }
         });
 
-        jButtons[2].addChangeListener(new ChangeListener() {
+        jButtons[2].addMouseListener(new MouseAdapter() {
             @Override
-            public void stateChanged(ChangeEvent e) {
-                ButtonModel button2 = jButtons[2].getModel();
+            public void mousePressed(MouseEvent e) {
+                super.mouseClicked(e);
+                icon = new ImageIcon("src/Images/Icons/choose_weapon_pressed.png");
+                jButtons[2].setIcon(icon);
+            }
 
-                if (button2.isPressed()) {
-                    icon = new ImageIcon("src/Images/Icons/choose_weapon_pressed.png");
-                    jButtons[2].setIcon(icon);
-                }
-
-                else {
-                    icon = new ImageIcon("src/Images/Icons/choose_weapon.png");
-                    jButtons[2].setIcon(icon);
-                }
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                icon = new ImageIcon("src/Images/Icons/choose_weapon.png");
+                jButtons[2].setIcon(icon);
             }
         });
 
-        jButtons[3].addChangeListener(new ChangeListener() {
+        jButtons[3].addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mouseClicked(e);
+                icon = new ImageIcon("src/Images/Icons/ranking_pressed.png");
+                jButtons[3].setIcon(icon);
+            }
 
             @Override
-            public void stateChanged(ChangeEvent e) {
-                ButtonModel button3 = jButtons[3].getModel();
-
-                if (button3.isPressed()) {
-                    icon = new ImageIcon("src/Images/Icons/ranking_pressed.png");
-                    jButtons[3].setIcon(icon);
-                }
-
-                else {
-                    icon = new ImageIcon("src/Images/Icons/ranking.png");
-                    jButtons[3].setIcon(icon);
-                }
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                icon = new ImageIcon("src/Images/Icons/ranking.png");
+                jButtons[3].setIcon(icon);
             }
         });
 
-        jButtons[4].addChangeListener(new ChangeListener() {
+        jButtons[4].addMouseListener(new MouseAdapter() {
             @Override
-            public void stateChanged(ChangeEvent e) {
-                ButtonModel button4 = jButtons[4].getModel();
+            public void mousePressed(MouseEvent e) {
+                super.mouseClicked(e);
+                icon = new ImageIcon("src/Images/Icons/exit_pressed.png");
+                jButtons[4].setIcon(icon);
+            }
 
-                if (button4.isPressed()) {
-                    icon = new ImageIcon("src/Images/Icons/exit_pressed.png");
-                    jButtons[4].setIcon(icon);
-                    dispose();
-                }
-
-                else {
-                    icon = new ImageIcon("src/Images/Icons/exit.png");
-                    jButtons[4].setIcon(icon);
-
-                }
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                icon = new ImageIcon("src/Images/Icons/exit.png");
+                jButtons[4].setIcon(icon);
+                dispose();
             }
         });
 
@@ -140,13 +132,13 @@ public class MainMenu extends JFrame {
     }
 
     public void initComponent() {
-        //PANEL 1
+        // We make a pannel title with the desired image
         icon = new ImageIcon("src/Images/Logo/logo.png");
         jLabel = new JLabel();
         jLabel.setPreferredSize(new Dimension(400,150));
         jLabel.setIcon(icon);
 
-        //BOTONES
+        // We make every button with the image that we want to see
         icon = new ImageIcon("src/Images/Icons/fight.png");
         jButtons[0] = new JButton(icon); // Fight button
         icon = new ImageIcon("src/Images/Icons/choose_fighter.png");
@@ -158,13 +150,15 @@ public class MainMenu extends JFrame {
         icon = new ImageIcon("src/Images/Icons/exit.png");
         jButtons[4] = new JButton(icon); // Exit Button
 
+        // We set the button with the features we want to see
+
         for (int i = 0; i < jButtons.length; i++){
             jButtons[i].setContentAreaFilled(false);
             jButtons[i].setBorderPainted(false);
             jButtons[i].setPreferredSize(new Dimension(240, 50));
         }
 
-        //INICIAR JPANEL
+        // We make the pannels for the buttons, and some to set the others to the position we want to
 
         for (int i = 0; i< jPanels.length; i++){
             jPanels[i] = new JPanel();
