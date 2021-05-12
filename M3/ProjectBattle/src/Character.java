@@ -124,7 +124,7 @@ public class Character {
         ArrayList<Character> characters = new ArrayList<Character>();
         String url = "jdbc:mysql://localhost/battle_database?serverTimezone=UTC";
         String user = "root";
-        String password = "";
+        String password = "t32i6zcf9893715";
         String query = "SELECT warriors.warrior_id, warriors.warrior_name, warriors.warrior_image_path, race.race, race.hp, race.strength,\n" +
                 "race.defense, race.agility, race.speed, race.race_points FROM warriors INNER JOIN race ON warriors.warrior_race = race.race_id " +
                 "WHERE race.race = \"" + race + "\";";
