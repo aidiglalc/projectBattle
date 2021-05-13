@@ -88,11 +88,11 @@ VALUES ("Human", 50, 5, 3, 6, 5, 20),
 ("Dwarf", 60, 6, 4, 5, 3, 21);
 
 INSERT INTO warriors(warrior_name, warrior_race, warrior_image_path, warrior_lore)
-VALUES ("Erdrick", 1, "Human_1.JPG", null),
-("Firion", 1, "Human_2.JPG", null),
+VALUES ("Erdrick", 1, "Human_1.JPG", "<html>When he turned 18, he embarked to finish the quest that his father began.</html>"),
+("Firion", 1, "Human_2.JPG", "<html>Losing his brother in war, he joined the militia to avenge him.</html>"),
 ("Valindra", 2, "Elf_1.JPG", "<html>She embarked on an adventure to reclaim the eye of the sun.</html>"),
 ("Taegen", 2, "Elf_2.JPG", "<html>Cursed by a Demon he seeks the cure to see the sun again.</html>"),
-("Saphielle", 2, "Elf_3.JPG", "<html>She left the elven city Avalon to see the beauty of the outside world.</html>"),
-("Mukhir", 3, "Dwarf_1.JPG", null),
-("Thalgreak", 3, "Dwarf_2.JPG", null),
-("Gathul", 3, "Dwarf_3.JPG", null);
+("Elanor", 2, "Elf_3.JPG", "<html>She left the elven city Avalon to see the beauty of the outside world.</html>"),
+("Mukhir", 3, "Dwarf_1.JPG", "<html>Tired of the life of the mine, he wants to live a life full of adventures.</html>"),
+("Thalkrum", 3, "Dwarf_2.JPG", "<html>He is dedicated to giving his services as a bodyguard, for a price.</html>"),
+("Garzhulg", 3, "Dwarf_3.JPG", "<html>He is searching for the legendary pickaxe that can mine orichalcum.</html>");

@@ -7,6 +7,8 @@ public class Window extends JFrame {
     MainMenu mainMenu = new MainMenu();
     RaceSelectionMenu raceSelectionMenu = new RaceSelectionMenu();
     ElfSelectionMenu elfSelectionMenu = new ElfSelectionMenu();
+    DwarfSelectionMenu dwarfSelectionMenu = new DwarfSelectionMenu();
+    HumanSelectionMenu humanSelectionMenu = new HumanSelectionMenu();
     JPanel mainPanel = new JPanel();
     CardLayout cardLayout = new CardLayout();
 
@@ -24,6 +26,8 @@ public class Window extends JFrame {
         mainPanel.add(mainMenu, "Main Menu");
         mainPanel.add(raceSelectionMenu, "Race Selection Menu");
         mainPanel.add(elfSelectionMenu, "Elf Selection Menu");
+        mainPanel.add(dwarfSelectionMenu, "Dwarf Selection Menu");
+        mainPanel.add(humanSelectionMenu, "Human Selection Menu");
 
         add(mainPanel);
 

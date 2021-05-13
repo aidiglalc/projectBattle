@@ -33,7 +33,7 @@ public class RaceSelectionMenu extends JPanel {
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
                 framePrincipal = (Window) Frame.getFrames()[0];
-                framePrincipal.swapWiew("Elf Selection Menu");
+                framePrincipal.swapWiew("Human Selection Menu");
             }
         });
 
@@ -63,7 +63,7 @@ public class RaceSelectionMenu extends JPanel {
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
                 framePrincipal = (Window) Frame.getFrames()[0];
-                framePrincipal.swapWiew("Elf Selection Menu");
+                framePrincipal.swapWiew("Dwarf Selection Menu");
             }
         });
 
