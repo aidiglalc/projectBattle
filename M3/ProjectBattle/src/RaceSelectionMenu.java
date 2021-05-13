@@ -1,55 +1,144 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
 
-public class RaceSelectionMenu extends JFrame {
+// This class shows the panel for the class selection menu
+
+public class RaceSelectionMenu extends JPanel {
     private BackgroundImageCharacterSelection backgroundImageCharacterSelection = new BackgroundImageCharacterSelection();
     private JButton jButtons[] = new JButton[3];
     private JPanel jPanel;
-    private JPanel jPanelInvisible[] = new JPanel[4];
+    private JPanel jPanelInvisible[] = new JPanel[3];
+    private JPanel jPanelTitle;
+    private Window framePrincipal;
+    private JPanel turnBackButtonPanel;
+    private ImageIcon imageIcon;
+    private JButton turnBackButton;
 
     public RaceSelectionMenu(){
         initComponent();
-        setSize(1280, 720);
-        this.setTitle("Awsttle"); //title
 
-        Toolkit pantalla = Toolkit.getDefaultToolkit();
-        setIconImage(pantalla.getImage("src/Images/Logo/game_icon.png"));
-        setLocation(pantalla.getScreenSize().width/2 - getWidth()/2,pantalla.getScreenSize().height/2 - getHeight()/2);
+        // The buttons are for selecting the race and the turn back button return us to the main screen
 
-        backgroundImageCharacterSelection.add(jPanelInvisible[3]);
+        jButtons[0].addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mouseClicked(e);
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                framePrincipal = (Window) Frame.getFrames()[0];
+                framePrincipal.swapWiew("Elf Selection Menu");
+            }
+        });
+
+        jButtons[1].addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mouseClicked(e);
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                framePrincipal = (Window) Frame.getFrames()[0];
+                framePrincipal.swapWiew("Elf Selection Menu");
+            }
+        });
+
+        jButtons[2].addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mouseClicked(e);
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                framePrincipal = (Window) Frame.getFrames()[0];
+                framePrincipal.swapWiew("Elf Selection Menu");
+            }
+        });
+
+        turnBackButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mouseClicked(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "turn_back_button_pressed.png");
+                turnBackButton.setIcon(imageIcon);
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "turn_back_button.png");
+                turnBackButton.setIcon(imageIcon);
+                framePrincipal = (Window) Frame.getFrames()[0];
+                framePrincipal.swapWiew("Main Menu");
+            }
+        });
+
+        backgroundImageCharacterSelection.add(jPanelTitle);
         backgroundImageCharacterSelection.add(jPanel);
+        backgroundImageCharacterSelection.add(turnBackButtonPanel);
 
         add(backgroundImageCharacterSelection);
-
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Si cierra la ventana, finaliza el programa
-        setResizable(false); //No permitir que la ventana se redimensione
-        setVisible(true); //hacer visible (debe ir siempre el ultimo)
 
     }
 
     public void initComponent() {
+
+        // This panels is the title
+
+        jPanelTitle = new JPanel();
+        jPanelTitle.setPreferredSize((new Dimension(500, 100)));
+        jPanelTitle.setOpaque(false);
+
+        // Here we make the turn back button
+
+        imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                File.separator + "Icons" + File.separator + "turn_back_button.png");
+        turnBackButton = new JButton(imageIcon);
+        turnBackButton.setPreferredSize(new Dimension(50, 50));
+        turnBackButton.setContentAreaFilled(false);
+        turnBackButton.setBorderPainted(false);
+
+        turnBackButtonPanel = new JPanel();
+        turnBackButtonPanel.setPreferredSize(new Dimension(1160, 60));
+        turnBackButtonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        turnBackButtonPanel.add(turnBackButton);
+        turnBackButtonPanel.setOpaque(false);
+
+
+        // Here we make the three buttons to choose race
+
         for (int i = 0; i < jButtons.length; i++) {
             jButtons[i] = new JButton();
-            jButtons[i].setPreferredSize(new Dimension(400, 550));
+            jButtons[i].setPreferredSize(new Dimension(300, 450));
         }
 
         for (int i = 0; i < jPanelInvisible.length; i++) {
             jPanelInvisible[i] = new JPanel();
-            jPanelInvisible[i].setPreferredSize(new Dimension(5, 20));
+            jPanelInvisible[i].setPreferredSize(new Dimension(50, 20));
             jPanelInvisible[i].setOpaque(false);
 
         }
 
         jPanel = new JPanel();
-        jPanel.setOpaque(false);
-
         jPanel.add(jButtons[0]);
         jPanel.add(jPanelInvisible[0]);
         jPanel.add(jButtons[1]);
         jPanel.add(jPanelInvisible[1]);
         jPanel.add(jButtons[2]);
-
-        jPanelInvisible[3].setPreferredSize((new Dimension(20, 95)));
-        jPanelInvisible[3].setOpaque(true);
+        jPanel.setOpaque(false);
     }
 }

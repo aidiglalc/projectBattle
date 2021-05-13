@@ -1,10 +1,15 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+
+// Contains all the Jpanels with the background for each scene that we have in the game
 
 public class BackgroundImageTitle extends JPanel {
-    private ImageIcon image = new ImageIcon("src/Images/Backgrounds/TitleBackground.jpg");
+    private ImageIcon image = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+            File.separator + "Backgrounds" + File.separator + "TitleBackground.jpg");
 
     public BackgroundImageTitle() {
+        setPreferredSize(new Dimension(1280, 720));
 
     }
 
@@ -17,10 +22,11 @@ public class BackgroundImageTitle extends JPanel {
 }
 
 class BackgroundImageCharacterSelection extends JPanel {
-    private ImageIcon image = new ImageIcon("src/Images/Backgrounds/CharacterSelectionBackground.jpg");
+    private ImageIcon image = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+            File.separator + "Backgrounds" + File.separator + "CharacterSelectionBackground.jpg");
 
     public BackgroundImageCharacterSelection() {
-
+        setPreferredSize(new Dimension(1280, 720));
     }
 
     @Override
@@ -32,10 +38,11 @@ class BackgroundImageCharacterSelection extends JPanel {
 }
 
 class BackgroundImageElfSelection extends JPanel {
-    private ImageIcon image = new ImageIcon("src/Images/Backgrounds/ElfSelectionBackground.png");
+    private ImageIcon image = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+            File.separator + "Backgrounds" + File.separator + "ElfSelectionBackground.png");
 
     public BackgroundImageElfSelection() {
-
+        setPreferredSize(new Dimension(1280, 720));
     }
 
     @Override
@@ -47,7 +54,8 @@ class BackgroundImageElfSelection extends JPanel {
 }
 
 class BorderImageElfSelection extends JPanel {
-    private ImageIcon image = new ImageIcon("src/Images/Characters/elf_selection_border.png");
+    private ImageIcon image = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+            File.separator + "Characters" + File.separator + "elf_selection_border.png");
 
     public BorderImageElfSelection() {
 

@@ -2,10 +2,13 @@ import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 
+// This class have all the stats of the character and the stat of currenthp to know how to heal that character
+// This class also have a method to get an ArrayList of the race selected
+
 public class Character {
     private int warrior_id;
     private String warrior_name, warrior_image_path, warrior_lore, race;
-    private int hp, strength, defense, agility, speed, race_points;
+    private int currenthp, hp, strength, defense, agility, speed, race_points;
 
     public Character() {
 
@@ -17,6 +20,7 @@ public class Character {
         this.warrior_image_path = warrior_image_path;
         this.warrior_lore = warrior_lore;
         this.race = race;
+        this.currenthp = hp;
         this.hp = hp;
         this.strength = strength;
         this.defense = defense;
@@ -71,6 +75,14 @@ public class Character {
 
     public void setHp(int hp) {
         this.hp = hp;
+    }
+
+    public int getCurrenthp() {
+        return currenthp;
+    }
+
+    public void setCurrenthp(int currenthp) {
+        this.currenthp = currenthp;
     }
 
     public int getStrength() {
@@ -129,11 +141,13 @@ public class Character {
                 '}';
     }
 
+    // With this method you input a race that exists in the database and returns an ArrayList of the characters of that race
+
     public ArrayList<Character> getRace(String race) {
         ArrayList<Character> characters = new ArrayList<Character>();
         String url = "jdbc:mysql://localhost/battle_database?serverTimezone=UTC";
         String user = "root";
-        String password = "t32i6zcf9893715";
+        String password = "";
         String query = "SELECT warriors.warrior_id, warriors.warrior_name, warriors.warrior_image_path, warriors.warrior_lore, race.race, race.hp, race.strength,\n" +
                 "race.defense, race.agility, race.speed, race.race_points FROM warriors INNER JOIN race ON warriors.warrior_race = race.race_id " +
                 "WHERE race.race = \"" + race + "\";";
@@ -150,9 +164,10 @@ public class Character {
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            JOptionPane.showMessageDialog(null, "ERROR: Check Database Password", "Character loading Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "ERROR: Check Database Password in getRace method.", "Character loading Error", JOptionPane.ERROR_MESSAGE);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "ERROR: Add the driver to connect Java with MySQL.", "Character loading Error", JOptionPane.ERROR_MESSAGE);
         }
 
         return characters;

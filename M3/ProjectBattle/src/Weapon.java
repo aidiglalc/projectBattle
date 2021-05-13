@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 
+// This class have all the stats of the weapons
+// This class also have a method to get an ArrayList of the weapons of the race selected
+
 public class Weapon {
     private int weapon_id;
     private String weapon_name;
@@ -92,6 +95,8 @@ public class Weapon {
                 '}';
     }
 
+    // This method returns an array list of weapons of the selected race, if "" is inserted as parameter, it returns all weapons
+
     public ArrayList<Weapon> getWeapons(String race) {
         ArrayList<Weapon> weapons = new ArrayList<Weapon>();
         String url = "jdbc:mysql://localhost/battle_database?serverTimezone=UTC";
@@ -110,11 +115,11 @@ public class Weapon {
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            JOptionPane.showMessageDialog(null, "ERROR: Check Database Password", "Weapon loading Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "ERROR: Check Database Password in getWeapons method.", "Weapon loading Error", JOptionPane.ERROR_MESSAGE);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "ERROR: Add the driver to connect Java with MySQL.", "Weapon loading Error", JOptionPane.ERROR_MESSAGE);
         }
         return weapons;
     }
-
 }

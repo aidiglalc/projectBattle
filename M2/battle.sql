@@ -72,15 +72,15 @@ FOREIGN KEY (opponent_weapon_id) REFERENCES weapons(weapon_id)
 );
 
 INSERT INTO weapons(weapon_name, weapon_strength, weapon_speed, weapon_race, weapon_image_path, weapon_points) 
-VALUES ("Dagger", 0, 3, "Human, Elf", null, 10),
-("Sword", 1, 1, "Human, Elf, Dwarf", null, 10),
-("Axe", 3, 0, "Human, Dwarf", null, 10),
-("Double Swords", 2, 2, "Human, Elf", null, 14),
-("Scimitar", 1, 2, "Human, Elf", null, 14),
-("Bow", 1, 5, "Elf", null, 15),
-("Katana", 2, 3, "Human", null, 18),
-("Dirk", 0, 4, "Human, Elf, Dwarf", null, 12),
-("Two-handed Axe", 5, 0, "Dwarf", null, 20);
+VALUES ("Dagger", 0, 3, "Human, Elf", "dagger.jpg", 10),
+("Sword", 1, 1, "Human, Elf, Dwarf", "sword.jpg", 10),
+("Axe", 3, 0, "Human, Dwarf", "axe.jpg", 10),
+("Double Swords", 2, 2, "Human, Elf", "double_swords.jpg", 14),
+("Scimitar", 1, 2, "Human, Elf", "scimitar.jpg", 14),
+("Bow", 1, 5, "Elf", "bow.jpg", 15),
+("Katana", 2, 3, "Human", "katana.jpg", 18),
+("Dirk", 0, 4, "Human, Elf, Dwarf", "dirk.jpg", 12),
+("Two-handed Axe", 5, 0, "Dwarf", "two-handed_axe.jpg", 20);
 
 INSERT INTO race(race, hp, strength, defense, agility, speed, race_points)
 VALUES ("Human", 50, 5, 3, 6, 5, 20),
@@ -88,11 +88,11 @@ VALUES ("Human", 50, 5, 3, 6, 5, 20),
 ("Dwarf", 60, 6, 4, 5, 3, 21);
 
 INSERT INTO warriors(warrior_name, warrior_race, warrior_image_path, warrior_lore)
-VALUES ("Erdrick", 1, "Human_1.jpg", null),
-("Firion", 1, "Human_2.jpg", null),
-("Valindra", 2, "Elf_1.jpg", "<html>She embarked on an adventure to reclaim the eye of the sun.</html>"),
-("Taegen", 2, "Elf_2.jpg", "<html>Cursed by a Demon he seeks the cure to see the sun again.</html>"),
-("Saphielle", 2, "Elf_3.jpg", "<html>She left the elf city to seek adventure and see the beauty of the outside world.</html>"),
-("Mukhir", 3, "Dwarf_1.jpg", null),
-("Thalgreak", 3, "Dwarf_2.jpg", null),
-("Gathul", 3, "Dwarf_3.jpg", null);
+VALUES ("Erdrick", 1, "Human_1.JPG", null),
+("Firion", 1, "Human_2.JPG", null),
+("Valindra", 2, "Elf_1.JPG", "<html>She embarked on an adventure to reclaim the eye of the sun.</html>"),
+("Taegen", 2, "Elf_2.JPG", "<html>Cursed by a Demon he seeks the cure to see the sun again.</html>"),
+("Saphielle", 2, "Elf_3.JPG", "<html>She left the elven city Avalon to see the beauty of the outside world.</html>"),
+("Mukhir", 3, "Dwarf_1.JPG", null),
+("Thalgreak", 3, "Dwarf_2.JPG", null),
+("Gathul", 3, "Dwarf_3.JPG", null);
