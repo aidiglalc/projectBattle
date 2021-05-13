@@ -11,7 +11,7 @@ public class RaceSelectionMenu extends JPanel {
     private JButton jButtons[] = new JButton[3];
     private JPanel jPanel;
     private JPanel jPanelInvisible[] = new JPanel[3];
-    private JPanel jPanelTitle;
+    private JLabel jLabelTitle;
     private Window framePrincipal;
     private JPanel turnBackButtonPanel;
     private ImageIcon imageIcon;
@@ -26,14 +26,37 @@ public class RaceSelectionMenu extends JPanel {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mouseClicked(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "HumanBannerSelected.png");
+                jButtons[0].setIcon(imageIcon);
 
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
+
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "HumanBanner.png");
+                jButtons[0].setIcon(imageIcon);
+
                 framePrincipal = (Window) Frame.getFrames()[0];
                 framePrincipal.swapWiew("Human Selection Menu");
+            }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "HumanBannerHover.png");
+                jButtons[0].setIcon(imageIcon);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "HumanBanner.png");
+                jButtons[0].setIcon(imageIcon);
             }
         });
 
@@ -41,14 +64,36 @@ public class RaceSelectionMenu extends JPanel {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mouseClicked(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "ElfBannerSelected.png");
+                jButtons[1].setIcon(imageIcon);
 
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "ElfBanner.png");
+                jButtons[1].setIcon(imageIcon);
+
                 framePrincipal = (Window) Frame.getFrames()[0];
                 framePrincipal.swapWiew("Elf Selection Menu");
+            }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "ElfBannerHover.png");
+                jButtons[1].setIcon(imageIcon);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "ElfBanner.png");
+                jButtons[1].setIcon(imageIcon);
             }
         });
 
@@ -56,14 +101,38 @@ public class RaceSelectionMenu extends JPanel {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mouseClicked(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "DwarfBannerSelected.png");
+                jButtons[2].setIcon(imageIcon);
 
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
+
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "DwarfBanner.png");
+                jButtons[2].setIcon(imageIcon);
+
                 framePrincipal = (Window) Frame.getFrames()[0];
                 framePrincipal.swapWiew("Dwarf Selection Menu");
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "DwarfBannerHover.png");
+                jButtons[2].setIcon(imageIcon);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "DwarfBanner.png");
+                jButtons[2].setIcon(imageIcon);
             }
         });
 
@@ -87,7 +156,7 @@ public class RaceSelectionMenu extends JPanel {
             }
         });
 
-        backgroundImageCharacterSelection.add(jPanelTitle);
+        backgroundImageCharacterSelection.add(jLabelTitle);
         backgroundImageCharacterSelection.add(jPanel);
         backgroundImageCharacterSelection.add(turnBackButtonPanel);
 
@@ -99,9 +168,12 @@ public class RaceSelectionMenu extends JPanel {
 
         // This panels is the title
 
-        jPanelTitle = new JPanel();
-        jPanelTitle.setPreferredSize((new Dimension(500, 100)));
-        jPanelTitle.setOpaque(false);
+        imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                File.separator + "Icons" + File.separator + "choose_your_race.png");
+
+        jLabelTitle = new JLabel(imageIcon);
+        jLabelTitle.setPreferredSize((new Dimension(500, 100)));
+        jLabelTitle.setOpaque(false);
 
         // Here we make the turn back button
 
@@ -122,10 +194,18 @@ public class RaceSelectionMenu extends JPanel {
         // Here we make the three buttons to choose race
 
         for (int i = 0; i < jButtons.length; i++) {
-            jButtons[i] = new JButton();
+            if (i == 0) imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                    File.separator + "Icons" + File.separator + "HumanBanner.png");
+            else if (i == 1) imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                    File.separator + "Icons" + File.separator + "ElfBanner.png");
+            else if (i == 2) imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                    File.separator + "Icons" + File.separator + "DwarfBanner.png");
+            jButtons[i] = new JButton(imageIcon);
             jButtons[i].setPreferredSize(new Dimension(300, 450));
+            jButtons[i].setContentAreaFilled(false);
+            jButtons[i].setBorderPainted(false);
         }
-
+        imageIcon = new ImageIcon();
         for (int i = 0; i < jPanelInvisible.length; i++) {
             jPanelInvisible[i] = new JPanel();
             jPanelInvisible[i].setPreferredSize(new Dimension(50, 20));
