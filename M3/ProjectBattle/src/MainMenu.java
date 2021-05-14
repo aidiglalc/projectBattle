@@ -21,6 +21,8 @@ public class MainMenu extends JPanel {
         // We make every button to change image when presses and change back to normal. The actions of the button will be activated when the button is released
         // All the actions except the exit button change the panel we show, the exit option closes the app
 
+        // Fight Button
+
         jButtons[0].addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -28,6 +30,8 @@ public class MainMenu extends JPanel {
                 icon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
                         File.separator + "Icons" + File.separator + "fight_pressed.png");
                 jButtons[0].setIcon(icon);
+                System.out.println(Window.player);
+                System.out.println(Window.playerWeapon);
             }
 
             @Override
@@ -36,8 +40,12 @@ public class MainMenu extends JPanel {
                 icon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
                         File.separator + "Icons" + File.separator + "fight.png");
                 jButtons[0].setIcon(icon);
+                if (Window.playerWeapon == null) JOptionPane.showMessageDialog(null,
+                        "Select your weapon before to begin the fight!", "No Weapon Selected!", JOptionPane.ERROR_MESSAGE);
             }
         });
+
+        // Choose Character Button
 
         jButtons[1].addMouseListener(new MouseAdapter() {
             @Override
@@ -59,6 +67,9 @@ public class MainMenu extends JPanel {
             }
         });
 
+
+        //Choose Weapon Button
+
         jButtons[2].addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -74,8 +85,14 @@ public class MainMenu extends JPanel {
                 icon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
                         File.separator + "Icons" + File.separator + "choose_weapon.png");
                 jButtons[2].setIcon(icon);
+
+                if (Window.player == null) JOptionPane.showMessageDialog(null,
+                        "Select your character before choosing your Weapon!", "No Character Selected!", JOptionPane.ERROR_MESSAGE);
             }
         });
+
+
+        //Ranking Button
 
         jButtons[3].addMouseListener(new MouseAdapter() {
             @Override
@@ -94,6 +111,9 @@ public class MainMenu extends JPanel {
                 jButtons[3].setIcon(icon);
             }
         });
+
+
+        //Exit Button
 
         jButtons[4].addMouseListener(new MouseAdapter() {
             @Override

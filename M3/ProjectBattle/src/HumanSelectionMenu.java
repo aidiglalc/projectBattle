@@ -39,6 +39,7 @@ public class HumanSelectionMenu extends JPanel {
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
+                Window.player = humans.get(0);
                 framePrincipal = (Window) Frame.getFrames()[0];
                 framePrincipal.swapWiew("Main Menu");
             }
@@ -54,6 +55,7 @@ public class HumanSelectionMenu extends JPanel {
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
+                Window.player = humans.get(1);
                 framePrincipal = (Window) Frame.getFrames()[0];
                 framePrincipal.swapWiew("Main Menu");
             }

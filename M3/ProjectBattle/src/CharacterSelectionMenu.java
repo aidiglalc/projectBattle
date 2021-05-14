@@ -5,11 +5,11 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.ArrayList;
 
-// This class is the panel that we show in the elf selection
+// This class is the panel that we show in the character selection
 
-public class ElfSelectionMenu extends JPanel {
-    private BackgroundImageElfSelection backgroundImageElfSelection = new BackgroundImageElfSelection();
-    private ArrayList<Character> elves;
+public class CharacterSelectionMenu extends JPanel {
+    private JPanel backgroundImageCharacterSelection;
+    private ArrayList<Character> characters;
     private JPanel characterPanel[] = new JPanel[3];
     private JPanel screenPanel;
     private JPanel invisiblePanel[] = new JPanel[2];
@@ -22,8 +22,15 @@ public class ElfSelectionMenu extends JPanel {
     private int labelCounter = 0;
     private ImageIcon imageIcon;
     private Window framePrincipal;
+    private String race;
 
-    public ElfSelectionMenu() {
+    public CharacterSelectionMenu(String race) {
+        this.race = race;
+
+        if (race.equalsIgnoreCase("human")) backgroundImageCharacterSelection = new BackgroundImageHumanSelection();
+        else if (race.equalsIgnoreCase("elf")) backgroundImageCharacterSelection = new BackgroundImageElfSelection();
+        else if (race.equalsIgnoreCase("dwarf")) backgroundImageCharacterSelection = new BackgroundImageDwarfSelection();
+
         initComponent();
 
         // For each button we add the methods so each button can add a diferent character, and return to the main menu,
@@ -39,6 +46,7 @@ public class ElfSelectionMenu extends JPanel {
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
+                Window.player = characters.get(0);
                 framePrincipal = (Window) Frame.getFrames()[0];
                 framePrincipal.swapWiew("Main Menu");
             }
@@ -54,6 +62,7 @@ public class ElfSelectionMenu extends JPanel {
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
+                Window.player = characters.get(1);
                 framePrincipal = (Window) Frame.getFrames()[0];
                 framePrincipal.swapWiew("Main Menu");
             }
@@ -69,6 +78,7 @@ public class ElfSelectionMenu extends JPanel {
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
+                Window.player = characters.get(2);
                 framePrincipal = (Window) Frame.getFrames()[0];
                 framePrincipal.swapWiew("Main Menu");
             }
@@ -104,11 +114,11 @@ public class ElfSelectionMenu extends JPanel {
 
         screenPanel.setPreferredSize(new Dimension(1160, 460));
 
-        backgroundImageElfSelection.add(titlePanel);
-        backgroundImageElfSelection.add(screenPanel);
-        backgroundImageElfSelection.add(turnBackButtonPanel);
+        backgroundImageCharacterSelection.add(titlePanel);
+        backgroundImageCharacterSelection.add(screenPanel);
+        backgroundImageCharacterSelection.add(turnBackButtonPanel);
 
-        add(backgroundImageElfSelection);
+        add(backgroundImageCharacterSelection);
 
     }
 
@@ -135,8 +145,14 @@ public class ElfSelectionMenu extends JPanel {
 
         // We set the title Panel
 
-        imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
-                File.separator + "Icons" + File.separator + "choose_your_elf.png");
+        if (race.equalsIgnoreCase("human")) imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator +
+                "src" + File.separator + "Images" + File.separator + "Icons" + File.separator + "choose_your_human.png");
+        else if (race.equalsIgnoreCase("elf")) imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator +
+                "src" + File.separator + "Images" + File.separator + "Icons" + File.separator + "choose_your_elf.png");
+        else if (race.equalsIgnoreCase("dwarf")) imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator +
+                "src" + File.separator + "Images" + File.separator + "Icons" + File.separator + "choose_your_dwarf.png");
+
+
         titlePanel = new JLabel(imageIcon);
         titlePanel.setPreferredSize(new Dimension(500, 100));
 
@@ -152,14 +168,17 @@ public class ElfSelectionMenu extends JPanel {
             invisiblePanelCharacter[i].setOpaque(false);
         }
 
-        // We obtain the array of elves that we have
+        // We obtain the array of characters that we have
 
-        elves = new Character().getRace("Elf");
+        characters = new Character().getRace(race);
 
         // We initialize the panels for each character
 
         for(int i = 0; i < characterPanel.length ; i++){
-            characterPanel[i] = new BorderImageElfSelection();
+            if (race.equalsIgnoreCase("human")) characterPanel[i] = new BorderImageHumanSelection();
+            else if (race.equalsIgnoreCase("elf")) characterPanel[i] = new BorderImageElfSelection();
+            else if (race.equalsIgnoreCase("dwarf")) characterPanel[i] = new BorderImageDwarfSelection();
+
             characterPanel[i].setLayout(new BoxLayout(characterPanel[i], BoxLayout.Y_AXIS));
             characterPanel[i].setPreferredSize(new Dimension(170, 450));
             characterPanel[i].setMaximumSize(new Dimension(170, 450));
@@ -167,11 +186,11 @@ public class ElfSelectionMenu extends JPanel {
 
         // We make each character token
 
-        for (int i = 0; i < elves.size(); i++) {
+        for (int i = 0; i < characters.size(); i++) {
             labelCounter = i * 5 + i; // This is a counter to make the loop work
 
             imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
-                    File.separator + "Characters" + File.separator + elves.get(i).getWarrior_image_path()); // We select the image from the array of elves
+                    File.separator + "Characters" + File.separator + characters.get(i).getWarrior_image_path()); // We select the image from the array of characters
 
             // We scale the image and add it to the button
 
@@ -195,7 +214,7 @@ public class ElfSelectionMenu extends JPanel {
             label[labelCounter] = new JLabel("Name");
             label[labelCounter].setFont(new Font("", Font.BOLD, 16));
             characterPanel[i].add(label[labelCounter]);
-            label[labelCounter + 1] = new JLabel(elves.get(i).getWarrior_name());
+            label[labelCounter + 1] = new JLabel(characters.get(i).getWarrior_name());
             characterPanel[i].add(label[labelCounter + 1]);
 
             characterPanel[i].add(invisiblePanelCharacter[i * 3 + 1]);
@@ -205,11 +224,11 @@ public class ElfSelectionMenu extends JPanel {
             label[labelCounter + 2] = new JLabel("Stats");
             label[labelCounter + 2].setFont(new Font("", Font.BOLD, 16));
             characterPanel[i].add(label[labelCounter + 2]);
-            label[labelCounter + 3] = new JLabel("<html>Hit Points: " + elves.get(i).getHp() +
-                    "<br>Strength: " + elves.get(i).getStrength() +
-                    "<br>Defense: " + elves.get(i).getDefense() +
-                    "<br>Agility: " + elves.get(i).getAgility() +
-                    "<br>Speed: " + elves.get(i).getSpeed() + "</html>");
+            label[labelCounter + 3] = new JLabel("<html>Hit Points: " + characters.get(i).getHp() +
+                    "<br>Strength: " + characters.get(i).getStrength() +
+                    "<br>Defense: " + characters.get(i).getDefense() +
+                    "<br>Agility: " + characters.get(i).getAgility() +
+                    "<br>Speed: " + characters.get(i).getSpeed() + "</html>");
             characterPanel[i].add(label[labelCounter + 3]);
 
             characterPanel[i].add(invisiblePanelCharacter[i * 3 + 2]);
@@ -219,7 +238,7 @@ public class ElfSelectionMenu extends JPanel {
             label[labelCounter + 4] = new JLabel("Lore");
             label[labelCounter + 4].setFont(new Font("", Font.BOLD, 16));
             characterPanel[i].add(label[labelCounter + 4]);
-            label[labelCounter + 5]= new JLabel(elves.get(i).getWarrior_lore());
+            label[labelCounter + 5]= new JLabel(characters.get(i).getWarrior_lore());
             characterPanel[i].add(label[labelCounter + 5]);
         }
     }

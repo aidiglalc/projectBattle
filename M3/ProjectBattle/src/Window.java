@@ -4,13 +4,15 @@ import java.awt.*;
 // This class manage all Panels and have the method to show one or another panel with a card layout
 
 public class Window extends JFrame {
-    MainMenu mainMenu = new MainMenu();
-    RaceSelectionMenu raceSelectionMenu = new RaceSelectionMenu();
-    ElfSelectionMenu elfSelectionMenu = new ElfSelectionMenu();
-    DwarfSelectionMenu dwarfSelectionMenu = new DwarfSelectionMenu();
-    HumanSelectionMenu humanSelectionMenu = new HumanSelectionMenu();
-    JPanel mainPanel = new JPanel();
-    CardLayout cardLayout = new CardLayout();
+    private MainMenu mainMenu = new MainMenu();
+    private RaceSelectionMenu raceSelectionMenu = new RaceSelectionMenu();
+    private CharacterSelectionMenu elfSelectionMenu = new CharacterSelectionMenu("elf");
+    private CharacterSelectionMenu dwarfSelectionMenu = new CharacterSelectionMenu("dwarf");
+    private CharacterSelectionMenu humanSelectionMenu = new CharacterSelectionMenu("human");
+    private JPanel mainPanel = new JPanel();
+    private CardLayout cardLayout = new CardLayout();
+    protected static Character player;
+    protected static Weapon playerWeapon;
 
     public Window(){
         setSize(1280, 720);
