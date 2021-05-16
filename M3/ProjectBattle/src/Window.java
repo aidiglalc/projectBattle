@@ -9,12 +9,15 @@ public class Window extends JFrame {
     private CharacterSelectionMenu elfSelectionMenu = new CharacterSelectionMenu("elf");
     private CharacterSelectionMenu dwarfSelectionMenu = new CharacterSelectionMenu("dwarf");
     private CharacterSelectionMenu humanSelectionMenu = new CharacterSelectionMenu("human");
+    private WeaponSelectionMenu elfWeaponSelectionMenu = new WeaponSelectionMenu("elf");
+    private WeaponSelectionMenu dwarfWeaponSelectionMenu = new WeaponSelectionMenu("dwarf");
+    private WeaponSelectionMenu humanWeaponSelectionMenu = new WeaponSelectionMenu("human");
     private Ranking ranking = new Ranking();
     private Fight fight = new Fight();
     private JPanel mainPanel = new JPanel();
     private CardLayout cardLayout = new CardLayout();
     protected static Character player;
-    protected static Weapon playerWeapon = new Weapon(1, "1", 1, 1, "1", "1",1);
+    protected static Weapon playerWeapon;
 
     public Window(){
         setSize(1280, 720);
@@ -32,6 +35,9 @@ public class Window extends JFrame {
         mainPanel.add(elfSelectionMenu, "Elf Selection Menu");
         mainPanel.add(dwarfSelectionMenu, "Dwarf Selection Menu");
         mainPanel.add(humanSelectionMenu, "Human Selection Menu");
+        mainPanel.add(elfWeaponSelectionMenu, "Elf Weapon Selection Menu");
+        mainPanel.add(dwarfWeaponSelectionMenu, "Dwarf Weapon Selection Menu");
+        mainPanel.add(humanWeaponSelectionMenu, "Human Weapon Selection Menu");
         mainPanel.add(ranking, "Ranking Menu");
         mainPanel.add(fight, "Fighting Menu");
 

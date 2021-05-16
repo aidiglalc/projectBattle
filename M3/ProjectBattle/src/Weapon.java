@@ -101,7 +101,7 @@ public class Weapon {
         ArrayList<Weapon> weapons = new ArrayList<Weapon>();
         String url = "jdbc:mysql://localhost/battle_database?serverTimezone=UTC";
         String user = "root";
-        String password = "";
+        String password = "t32i6zcf9893715";
         String query = "SELECT * FROM weapons WHERE weapon_race LIKE \"%" + race + "%\";";
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");

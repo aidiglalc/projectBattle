@@ -92,6 +92,20 @@ public class MainMenu extends JPanel {
 
                 if (Window.player == null) JOptionPane.showMessageDialog(null,
                         "Select your character before choosing your Weapon!", "No Character Selected!", JOptionPane.ERROR_MESSAGE);
+                else {
+                    if (Window.player.getRace().equalsIgnoreCase("Human")){
+                        principalFrame = (Window) Frame.getFrames()[0];
+                        principalFrame.swapWiew("Human Weapon Selection Menu");
+                    }
+                    else if (Window.player.getRace().equalsIgnoreCase("Elf")){
+                        principalFrame = (Window) Frame.getFrames()[0];
+                        principalFrame.swapWiew("Elf Weapon Selection Menu");
+                    }
+                    else if (Window.player.getRace().equalsIgnoreCase("Dwarf")){
+                        principalFrame = (Window) Frame.getFrames()[0];
+                        principalFrame.swapWiew("Dwarf Weapon Selection Menu");
+                    }
+                }
             }
         });
 
