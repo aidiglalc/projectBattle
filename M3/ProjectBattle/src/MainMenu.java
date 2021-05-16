@@ -42,6 +42,10 @@ public class MainMenu extends JPanel {
                 jButtons[0].setIcon(icon);
                 if (Window.playerWeapon == null) JOptionPane.showMessageDialog(null,
                         "Select your weapon before to begin the fight!", "No Weapon Selected!", JOptionPane.ERROR_MESSAGE);
+                else {
+                    principalFrame = (Window) Frame.getFrames()[0];
+                    principalFrame.swapWiew("Fighting Menu");
+                }
             }
         });
 

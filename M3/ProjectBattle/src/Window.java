@@ -10,10 +10,11 @@ public class Window extends JFrame {
     private CharacterSelectionMenu dwarfSelectionMenu = new CharacterSelectionMenu("dwarf");
     private CharacterSelectionMenu humanSelectionMenu = new CharacterSelectionMenu("human");
     private Ranking ranking = new Ranking();
+    private Fight fight = new Fight();
     private JPanel mainPanel = new JPanel();
     private CardLayout cardLayout = new CardLayout();
     protected static Character player;
-    protected static Weapon playerWeapon;
+    protected static Weapon playerWeapon = new Weapon(1, "1", 1, 1, "1", "1",1);
 
     public Window(){
         setSize(1280, 720);
@@ -32,6 +33,7 @@ public class Window extends JFrame {
         mainPanel.add(dwarfSelectionMenu, "Dwarf Selection Menu");
         mainPanel.add(humanSelectionMenu, "Human Selection Menu");
         mainPanel.add(ranking, "Ranking Menu");
+        mainPanel.add(fight, "Fighting Menu");
 
         add(mainPanel);
 

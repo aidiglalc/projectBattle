@@ -164,3 +164,19 @@ class BackgroundImageTopTen extends JPanel {
         fondo.drawImage(image.getImage(),0,0,this);
     }
 }
+
+class BackgroundImageFighting extends JPanel {
+    private ImageIcon image = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+            File.separator + "Backgrounds" + File.separator + "HumanSelectionBackground.jpg");
+
+    public BackgroundImageFighting() {
+        setPreferredSize(new Dimension(1280, 720));
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D fondo = (Graphics2D) g;
+        fondo.drawImage(image.getImage(),0,0,this);
+    }
+}
