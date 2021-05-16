@@ -13,7 +13,7 @@ public class MainMenu extends JPanel {
     private JPanel jPanelsInvisible[] = new JPanel[6];
     private JLabel jLabel;
     private Icon icon;
-    private Window framePrincipal;
+    private Window principalFrame;
 
     public MainMenu(){
         initComponent();
@@ -62,8 +62,8 @@ public class MainMenu extends JPanel {
                 icon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
                         File.separator + "Icons" + File.separator + "choose_fighter.png");
                 jButtons[1].setIcon(icon);
-                framePrincipal = (Window) Frame.getFrames()[0];
-                framePrincipal.swapWiew("Race Selection Menu");
+                principalFrame = (Window) Frame.getFrames()[0];
+                principalFrame.swapWiew("Race Selection Menu");
             }
         });
 
@@ -109,6 +109,8 @@ public class MainMenu extends JPanel {
                 icon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
                         File.separator + "Icons" + File.separator + "ranking.png");
                 jButtons[3].setIcon(icon);
+                principalFrame = (Window) Frame.getFrames()[0];
+                principalFrame.swapWiew("Ranking Menu");
             }
         });
 
@@ -130,8 +132,8 @@ public class MainMenu extends JPanel {
                 icon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
                         File.separator + "Icons" + File.separator + "exit.png");
                 jButtons[4].setIcon(icon);
-                framePrincipal = (Window) Frame.getFrames()[0];
-                framePrincipal.dispose();
+                principalFrame = (Window) Frame.getFrames()[0];
+                principalFrame.dispose();
             }
         });
 

@@ -132,3 +132,35 @@ class BorderImageHumanSelection extends JPanel {
         fondo.drawImage(image.getImage(),0,0,this);
     }
 }
+
+class BackgroundImageRanking extends JPanel {
+    private ImageIcon image = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+            File.separator + "Backgrounds" + File.separator + "RankingBackground.png");
+
+    public BackgroundImageRanking() {
+        setPreferredSize(new Dimension(1280, 720));
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D fondo = (Graphics2D) g;
+        fondo.drawImage(image.getImage(),0,0,this);
+    }
+}
+
+class BackgroundImageTopTen extends JPanel {
+    private ImageIcon image = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+            File.separator + "Backgrounds" + File.separator + "TopTenRankingBackground.png");
+
+    public BackgroundImageTopTen() {
+        setPreferredSize(new Dimension(600, 460));
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D fondo = (Graphics2D) g;
+        fondo.drawImage(image.getImage(),0,0,this);
+    }
+}

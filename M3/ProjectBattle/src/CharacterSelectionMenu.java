@@ -21,7 +21,7 @@ public class CharacterSelectionMenu extends JPanel {
     private JButton turnBackButton;
     private int labelCounter = 0;
     private ImageIcon imageIcon;
-    private Window framePrincipal;
+    private Window principalFrame;
     private String race;
 
     public CharacterSelectionMenu(String race) {
@@ -47,8 +47,8 @@ public class CharacterSelectionMenu extends JPanel {
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
                 Window.player = characters.get(0);
-                framePrincipal = (Window) Frame.getFrames()[0];
-                framePrincipal.swapWiew("Main Menu");
+                principalFrame = (Window) Frame.getFrames()[0];
+                principalFrame.swapWiew("Main Menu");
             }
         });
 
@@ -63,8 +63,8 @@ public class CharacterSelectionMenu extends JPanel {
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
                 Window.player = characters.get(1);
-                framePrincipal = (Window) Frame.getFrames()[0];
-                framePrincipal.swapWiew("Main Menu");
+                principalFrame = (Window) Frame.getFrames()[0];
+                principalFrame.swapWiew("Main Menu");
             }
         });
 
@@ -79,8 +79,8 @@ public class CharacterSelectionMenu extends JPanel {
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
                 Window.player = characters.get(2);
-                framePrincipal = (Window) Frame.getFrames()[0];
-                framePrincipal.swapWiew("Main Menu");
+                principalFrame = (Window) Frame.getFrames()[0];
+                principalFrame.swapWiew("Main Menu");
             }
         });
 
@@ -99,8 +99,8 @@ public class CharacterSelectionMenu extends JPanel {
                 imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
                         File.separator + "Icons" + File.separator + "turn_back_button.png");
                 turnBackButton.setIcon(imageIcon);
-                framePrincipal = (Window) Frame.getFrames()[0];
-                framePrincipal.swapWiew("Race Selection Menu");
+                principalFrame = (Window) Frame.getFrames()[0];
+                principalFrame.swapWiew("Race Selection Menu");
             }
         });
 

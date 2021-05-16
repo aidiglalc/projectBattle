@@ -9,6 +9,7 @@ public class Window extends JFrame {
     private CharacterSelectionMenu elfSelectionMenu = new CharacterSelectionMenu("elf");
     private CharacterSelectionMenu dwarfSelectionMenu = new CharacterSelectionMenu("dwarf");
     private CharacterSelectionMenu humanSelectionMenu = new CharacterSelectionMenu("human");
+    private Ranking ranking = new Ranking();
     private JPanel mainPanel = new JPanel();
     private CardLayout cardLayout = new CardLayout();
     protected static Character player;
@@ -30,6 +31,7 @@ public class Window extends JFrame {
         mainPanel.add(elfSelectionMenu, "Elf Selection Menu");
         mainPanel.add(dwarfSelectionMenu, "Dwarf Selection Menu");
         mainPanel.add(humanSelectionMenu, "Human Selection Menu");
+        mainPanel.add(ranking, "Ranking Menu");
 
         add(mainPanel);
 

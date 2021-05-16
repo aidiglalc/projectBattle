@@ -90,10 +90,18 @@ VALUES ("Human", 50, 5, 3, 6, 5, 20),
 INSERT INTO warriors(warrior_name, warrior_race, warrior_image_path, warrior_lore)
 VALUES ("Erdrick", 1, "Human_1.JPG", "<html>When he turned 18, he embarked to finish the quest that his father began.</html>"),
 ("Firion", 1, "Human_2.JPG", "<html>Losing his brother in war, he joined the militia to avenge him.</html>"),
-("Rydia", 1, "Human_2.JPG", "<html>Born with magical powers, she travels the world to learn more about herself.</html>"), /* Falta cambiar esta foto*/
+("Rydia", 1, "Human_3.png", "<html>Born with magical powers, she travels the world to learn more about herself.</html>"),
 ("Valindra", 2, "Elf_1.JPG", "<html>She embarked on an adventure to reclaim the eye of the sun.</html>"),
 ("Taegen", 2, "Elf_2.JPG", "<html>Cursed by a Demon he seeks the cure to see the sun again.</html>"),
 ("Elanor", 2, "Elf_3.JPG", "<html>She left the elven city Avalon to see the beauty of the outside world.</html>"),
 ("Mukhir", 3, "Dwarf_1.JPG", "<html>Tired of the life of the mine, he wants to live a life full of adventures.</html>"),
 ("Thalkrum", 3, "Dwarf_2.JPG", "<html>He is dedicated to giving his services as a bodyguard, for a price.</html>"),
 ("Garzhulg", 3, "Dwarf_3.JPG", "<html>He is searching for the legendary pickaxe that can mine orichalcum.</html>");
+
+INSERT INTO players VALUES (1, "Pruebas");
+INSERT INTO game (player_id, player_name, warrior_id, warrior_weapon_id, total_points, enemies_defeated, total_injuries_caused, total_injuries_suffered) 
+VALUES (1, "Pruebas", 1, 1, 10000, 999, 9999, 0), 
+(1, "Pruebas", 1, 1, 13000, 999, 9999, 0),
+(1, "Pruebas", 1, 1, 14000, 999, 9999, 0),
+(1, "Pruebas", 1, 1, 17000, 999, 9999, 0),
+(1, "Pruebas", 1, 1, 12000, 999, 9999, 0);

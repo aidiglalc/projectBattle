@@ -3,7 +3,7 @@
 
 public class Main {
     public static void main(String[] args) {
-        Window window = new Window(); // Creates the main window
+          new Window(); // Creates the main window
 //        System.out.println(new Character().getRace("Human")); // Prints an ArrayList of the Humans with their stats
 //        System.out.println(new Character().getRace("Elf"));   // Prints an ArrayList of the Elves with their stats
 //        System.out.println(new Character().getRace("Dwarf")); // Prints an ArrayList of the Dwarves with their stats

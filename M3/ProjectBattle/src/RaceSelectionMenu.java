@@ -12,7 +12,7 @@ public class RaceSelectionMenu extends JPanel {
     private JPanel jPanel;
     private JPanel jPanelInvisible[] = new JPanel[3];
     private JLabel jLabelTitle;
-    private Window framePrincipal;
+    private Window principalFrame;
     private JPanel turnBackButtonPanel;
     private ImageIcon imageIcon;
     private JButton turnBackButton;
@@ -40,8 +40,8 @@ public class RaceSelectionMenu extends JPanel {
                         File.separator + "Icons" + File.separator + "HumanBanner.png");
                 jButtons[0].setIcon(imageIcon);
 
-                framePrincipal = (Window) Frame.getFrames()[0];
-                framePrincipal.swapWiew("Human Selection Menu");
+                principalFrame = (Window) Frame.getFrames()[0];
+                principalFrame.swapWiew("Human Selection Menu");
             }
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -77,8 +77,8 @@ public class RaceSelectionMenu extends JPanel {
                         File.separator + "Icons" + File.separator + "ElfBanner.png");
                 jButtons[1].setIcon(imageIcon);
 
-                framePrincipal = (Window) Frame.getFrames()[0];
-                framePrincipal.swapWiew("Elf Selection Menu");
+                principalFrame = (Window) Frame.getFrames()[0];
+                principalFrame.swapWiew("Elf Selection Menu");
             }
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -115,8 +115,8 @@ public class RaceSelectionMenu extends JPanel {
                         File.separator + "Icons" + File.separator + "DwarfBanner.png");
                 jButtons[2].setIcon(imageIcon);
 
-                framePrincipal = (Window) Frame.getFrames()[0];
-                framePrincipal.swapWiew("Dwarf Selection Menu");
+                principalFrame = (Window) Frame.getFrames()[0];
+                principalFrame.swapWiew("Dwarf Selection Menu");
             }
 
             @Override
@@ -151,8 +151,8 @@ public class RaceSelectionMenu extends JPanel {
                 imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
                         File.separator + "Icons" + File.separator + "turn_back_button.png");
                 turnBackButton.setIcon(imageIcon);
-                framePrincipal = (Window) Frame.getFrames()[0];
-                framePrincipal.swapWiew("Main Menu");
+                principalFrame = (Window) Frame.getFrames()[0];
+                principalFrame.swapWiew("Main Menu");
             }
         });
 
