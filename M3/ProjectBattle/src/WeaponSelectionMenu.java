@@ -41,7 +41,7 @@ public class WeaponSelectionMenu extends JPanel {
                 @Override
                 public void mouseReleased(MouseEvent e) {
                     super.mouseReleased(e);
-                    Window.playerWeapon = weaponArrayList.get(index);
+                    Data.playerWeapon = weaponArrayList.get(index);
                     principalFrame = (Window) Frame.getFrames()[0];
                     principalFrame.swapWiew("Main Menu");
 

@@ -16,8 +16,6 @@ public class Window extends JFrame {
     private Fight fight = new Fight();
     private JPanel mainPanel = new JPanel();
     private CardLayout cardLayout = new CardLayout();
-    protected static Character player;
-    protected static Weapon playerWeapon;
 
     public Window(){
         setSize(1280, 720);

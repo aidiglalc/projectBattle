@@ -30,8 +30,8 @@ public class MainMenu extends JPanel {
                 icon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
                         File.separator + "Icons" + File.separator + "fight_pressed.png");
                 jButtons[0].setIcon(icon);
-                System.out.println(Window.player);
-                System.out.println(Window.playerWeapon);
+                System.out.println(Data.player);
+                System.out.println(Data.playerWeapon);
             }
 
             @Override
@@ -40,7 +40,7 @@ public class MainMenu extends JPanel {
                 icon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
                         File.separator + "Icons" + File.separator + "fight.png");
                 jButtons[0].setIcon(icon);
-                if (Window.playerWeapon == null) JOptionPane.showMessageDialog(null,
+                if (Data.playerWeapon == null) JOptionPane.showMessageDialog(null,
                         "Select your weapon before to begin the fight!", "No Weapon Selected!", JOptionPane.ERROR_MESSAGE);
                 else {
                     principalFrame = (Window) Frame.getFrames()[0];
@@ -90,18 +90,18 @@ public class MainMenu extends JPanel {
                         File.separator + "Icons" + File.separator + "choose_weapon.png");
                 jButtons[2].setIcon(icon);
 
-                if (Window.player == null) JOptionPane.showMessageDialog(null,
+                if (Data.player == null) JOptionPane.showMessageDialog(null,
                         "Select your character before choosing your Weapon!", "No Character Selected!", JOptionPane.ERROR_MESSAGE);
                 else {
-                    if (Window.player.getRace().equalsIgnoreCase("Human")){
+                    if (Data.player.getRace().equalsIgnoreCase("Human")){
                         principalFrame = (Window) Frame.getFrames()[0];
                         principalFrame.swapWiew("Human Weapon Selection Menu");
                     }
-                    else if (Window.player.getRace().equalsIgnoreCase("Elf")){
+                    else if (Data.player.getRace().equalsIgnoreCase("Elf")){
                         principalFrame = (Window) Frame.getFrames()[0];
                         principalFrame.swapWiew("Elf Weapon Selection Menu");
                     }
-                    else if (Window.player.getRace().equalsIgnoreCase("Dwarf")){
+                    else if (Data.player.getRace().equalsIgnoreCase("Dwarf")){
                         principalFrame = (Window) Frame.getFrames()[0];
                         principalFrame.swapWiew("Dwarf Weapon Selection Menu");
                     }

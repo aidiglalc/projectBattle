@@ -206,7 +206,7 @@ public class Ranking extends JPanel {
             Connection con = DriverManager.getConnection(url, user, password);
 
             Statement stm = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            ResultSet rs = stm.executeQuery("select player_name,total_points from game order by total_points desc limit 10;");
+            ResultSet rs = stm.executeQuery("SELECT players.player_name, game.total_points FROM game INNER JOIN players ON game.player_id = players.player_id ORDER BY total_points DESC LIMIT 10;");
 
             while (rs.next()) {
                 player = new ArrayList();

@@ -46,8 +46,8 @@ public class CharacterSelectionMenu extends JPanel {
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
-                Window.player = characters.get(0);
-                Window.playerWeapon = null;
+                Data.player = characters.get(0);
+                Data.playerWeapon = null;
                 principalFrame = (Window) Frame.getFrames()[0];
                 principalFrame.swapWiew("Main Menu");
             }
@@ -63,8 +63,8 @@ public class CharacterSelectionMenu extends JPanel {
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
-                Window.player = characters.get(1);
-                Window.playerWeapon = null;
+                Data.player = characters.get(1);
+                Data.playerWeapon = null;
                 principalFrame = (Window) Frame.getFrames()[0];
                 principalFrame.swapWiew("Main Menu");
             }
@@ -80,8 +80,8 @@ public class CharacterSelectionMenu extends JPanel {
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
-                Window.player = characters.get(2);
-                Window.playerWeapon = null;
+                Data.player = characters.get(2);
+                Data.playerWeapon = null;
                 principalFrame = (Window) Frame.getFrames()[0];
                 principalFrame.swapWiew("Main Menu");
             }

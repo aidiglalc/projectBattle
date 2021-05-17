@@ -40,13 +40,10 @@ player_name VARCHAR(25)
 CREATE TABLE game (
 game_id INTEGER AUTO_INCREMENT PRIMARY KEY,
 player_id INTEGER,
-player_name VARCHAR(25),
 warrior_id INTEGER,
 warrior_weapon_id INTEGER,
 total_points INTEGER,
 enemies_defeated INTEGER,
-total_injuries_caused INTEGER,
-total_injuries_suffered INTEGER,
 FOREIGN KEY (player_id) REFERENCES players(player_id),
 FOREIGN KEY (warrior_id) REFERENCES warriors(warrior_id),
 FOREIGN KEY (warrior_weapon_id) REFERENCES weapons(weapon_id)
@@ -99,9 +96,9 @@ VALUES ("Erdrick", 1, "Human_1.JPG", "<html>When he turned 18, he embarked to fi
 ("Garzhulg", 3, "Dwarf_3.JPG", "<html>He is searching for the legendary pickaxe that can mine orichalcum.</html>");
 
 INSERT INTO players VALUES (1, "Pruebas");
-INSERT INTO game (player_id, player_name, warrior_id, warrior_weapon_id, total_points, enemies_defeated, total_injuries_caused, total_injuries_suffered) 
-VALUES (1, "Pruebas", 1, 1, 10000, 999, 9999, 0), 
-(1, "Pruebas", 1, 1, 13000, 999, 9999, 0),
-(1, "Pruebas", 1, 1, 14000, 999, 9999, 0),
-(1, "Pruebas", 1, 1, 17000, 999, 9999, 0),
-(1, "Pruebas", 1, 1, 12000, 999, 9999, 0);
+INSERT INTO game (player_id, warrior_id, warrior_weapon_id, total_points, enemies_defeated) 
+VALUES (1, 1, 1, 15000, 0), 
+(1, 1, 1, 13000, 0),
+(1, 1, 1, 14000, 0),
+(1, 1, 1, 11000, 0),
+(1, 1, 1, 12000, 0);
