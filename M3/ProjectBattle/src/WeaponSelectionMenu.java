@@ -25,11 +25,14 @@ public class WeaponSelectionMenu extends JPanel {
     private String race;
     private String parts[];
 
+    // This class manage the weapon selection menu, the construcot recieves a race and makes the menu
+
     public WeaponSelectionMenu(String race){
-        //INIT COMPONENT
         this.race = race;
+
         initComponent();
 
+        // For each weapon we make their button we split the name with the format to add the different hover and press effects
 
         for (int i = 0; i < weaponArrayList.size(); i++){
             int index = i;
@@ -51,6 +54,9 @@ public class WeaponSelectionMenu extends JPanel {
                     principalFrame.swapWiew("Main Menu");
 
                 }
+
+                // This method manages the hover of the button and what the labels to show the weapon information
+
                 @Override
                 public void mouseEntered(MouseEvent e) {
                     super.mouseEntered(e);
@@ -76,6 +82,8 @@ public class WeaponSelectionMenu extends JPanel {
 
             });
         }
+
+        // Here we add the functionality of the turn back button
 
         turnBackButton.addMouseListener(new MouseAdapter() {
             @Override
@@ -112,9 +120,6 @@ public class WeaponSelectionMenu extends JPanel {
             }
         });
 
-
-        //ADD WEAPONS TO MAIN PANEL
-
         backgroundImageWeaponSelection.add(titlePanel);
         backgroundImageWeaponSelection.add(mainPanel);
         backgroundImageWeaponSelection.add(turnBackButtonPanel);
@@ -124,12 +129,17 @@ public class WeaponSelectionMenu extends JPanel {
     }
 
     public void initComponent() {
+
+        // Here we set the title panel
+
         titlePanel.setPreferredSize(new Dimension(1280, 100));
         imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
                 File.separator + "Icons" + File.separator + "choose_your_weapon.png");
         title = new JLabel(imageIcon);
         titlePanel.add(title);
         titlePanel.setOpaque(false);
+
+        // We get all the weapons and prepare de UI to select the weapons
 
         weaponArrayList = new Weapon().getWeapons(race);
 
@@ -141,8 +151,9 @@ public class WeaponSelectionMenu extends JPanel {
         weaponDescriptionPanel.add(invisiblePanelWeaponStats);
         invisiblePanelWeaponStats.setOpaque(false);
 
-        for (int i = 0; i < weaponArrayList.size(); i++) {
+        // Here we create every button for each weapon
 
+        for (int i = 0; i < weaponArrayList.size(); i++) {
             imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
                     File.separator + "weapons" + File.separator + weaponArrayList.get(i).getWeapon_image_path());
             ImageIcon image = new ImageIcon(imageIcon.getImage().getScaledInstance(132, 132, Image.SCALE_DEFAULT));
@@ -151,6 +162,9 @@ public class WeaponSelectionMenu extends JPanel {
             weaponButtons.get(i).setContentAreaFilled(false);
             weaponButtons.get(i).setBorderPainted(false);
         }
+
+        // We create the panels and add the buttons of the weapons
+
         weaponPanel.setPreferredSize(new Dimension(448, 450));
         weaponPanel.setOpaque(false);
 
@@ -164,6 +178,8 @@ public class WeaponSelectionMenu extends JPanel {
         mainPanel.setPreferredSize(new Dimension(1280, 450));
         invisiblePanel.setPreferredSize(new Dimension(100, 450));
         invisiblePanel.setOpaque(false);
+
+        // Here we create the labels for the weapons description
 
         for (int i = 0; i < weaponDescription.length; i++) {
             if (i == 0) weaponDescription[i] = new JLabel("Weapon Name: ");
@@ -179,11 +195,12 @@ public class WeaponSelectionMenu extends JPanel {
             weaponDescriptionPanel.add(weaponDescription[i]);
         }
 
+        // We add them into the main panel
+
         mainPanel.add(weaponPanel);
         mainPanel.add(invisiblePanel);
         mainPanel.add(weaponDescriptionPanel);
         mainPanel.setOpaque(false);
-        // Turn Back Button
 
         imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
                 File.separator + "Icons" + File.separator + "turn_back_button.png");
