@@ -8,11 +8,13 @@ import java.util.ArrayList;
 public class WeaponSelectionMenu extends JPanel {
     private JPanel backgroundImageWeaponSelection = new BackgroundImageWeaponSelection();
     private JPanel weaponPanel = new BackgroundWeapons();
-    private JPanel weaponDescriptionPanel = new JPanel();
+    private JPanel weaponDescriptionPanel = new BackgroundWeapons();
     private JPanel mainPanel = new JPanel();
     private JPanel turnBackButtonPanel = new JPanel();
     private JPanel titlePanel = new JPanel();
     private JPanel invisiblePanel = new JPanel();
+    private JPanel invisiblePanelWeaponImage = new JPanel();
+    private JPanel invisiblePanelWeaponStats = new JPanel();
     private ArrayList<JButton> weaponButtons = new ArrayList<JButton>();
     private JButton turnBackButton = new JButton();
     private ImageIcon imageIcon;
@@ -104,13 +106,21 @@ public class WeaponSelectionMenu extends JPanel {
 
         weaponArrayList = new Weapon().getWeapons(race);
 
+        invisiblePanelWeaponImage.setPreferredSize(new Dimension(448, 12));
+        weaponPanel.add(invisiblePanelWeaponImage);
+        invisiblePanelWeaponImage.setOpaque(false);
+
+        invisiblePanelWeaponStats.setPreferredSize(new Dimension(448, 12));
+        weaponDescriptionPanel.add(invisiblePanelWeaponStats);
+        invisiblePanelWeaponStats.setOpaque(false);
+
         for (int i = 0; i < weaponArrayList.size(); i++) {
 
             imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
                     File.separator + "weapons" + File.separator + weaponArrayList.get(i).getWeapon_image_path());
             ImageIcon image = new ImageIcon(imageIcon.getImage().getScaledInstance(143, 143, Image.SCALE_DEFAULT));
             weaponButtons.add(new JButton(image));
-            weaponButtons.get(i).setPreferredSize(new Dimension(142, 142));
+            weaponButtons.get(i).setPreferredSize(new Dimension(132, 132));
         }
 
         weaponPanel.setPreferredSize(new Dimension(448, 450));
@@ -121,23 +131,27 @@ public class WeaponSelectionMenu extends JPanel {
         }
 
         weaponDescriptionPanel.setPreferredSize(new Dimension(448, 450));
+        weaponDescriptionPanel.setOpaque(false);
+
         mainPanel.setPreferredSize(new Dimension(1280, 450));
         invisiblePanel.setPreferredSize(new Dimension(100, 450));
         invisiblePanel.setOpaque(false);
 
         for (int i = 0; i < weaponDescription.length; i++) {
-            if (i == 0) weaponDescription[i] = new JLabel("Weapon Name");
-            else if (i == 2) weaponDescription[i] = new JLabel("Weapon Strength");
-            else if (i == 4) weaponDescription[i] = new JLabel("Weapon Speed");
+            if (i == 0) weaponDescription[i] = new JLabel("Weapon Name: ");
+            else if (i == 2) weaponDescription[i] = new JLabel("Weapon Strength: ");
+            else if (i == 4) weaponDescription[i] = new JLabel("Weapon Speed: ");
             else weaponDescription[i] = new JLabel();
 
-            weaponDescription[i].setPreferredSize(new Dimension(200,100));
+            if (i == 0 || i % 2 == 0) weaponDescription[i].setPreferredSize(new Dimension(150,132));
+            else weaponDescription[i].setPreferredSize(new Dimension(200,132));
+
+            weaponDescription[i].setFont(new Font("", Font.BOLD, 16));
+            weaponDescription[i].setForeground(Color.WHITE);
             weaponDescriptionPanel.add(weaponDescription[i]);
 
 
         }
-
-
 
         mainPanel.add(weaponPanel);
         mainPanel.add(invisiblePanel);
@@ -157,17 +171,6 @@ public class WeaponSelectionMenu extends JPanel {
         turnBackButtonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
         turnBackButtonPanel.add(turnBackButton);
         turnBackButtonPanel.setOpaque(false);
-
-
-        // BORDERS
-
-        weaponDescription[0].setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        weaponDescription[1].setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        weaponDescription[2].setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        weaponDescription[3].setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        weaponDescription[4].setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        weaponDescription[5].setBorder(BorderFactory.createLineBorder(Color.BLACK));
-
     }
 }
 
