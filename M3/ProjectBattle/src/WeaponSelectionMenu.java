@@ -23,6 +23,7 @@ public class WeaponSelectionMenu extends JPanel {
     private JLabel title;
     private Window principalFrame;
     private String race;
+    private String parts[];
 
     public WeaponSelectionMenu(String race){
         //INIT COMPONENT
@@ -35,7 +36,10 @@ public class WeaponSelectionMenu extends JPanel {
                 @Override
                 public void mousePressed(MouseEvent e) {
                     super.mouseClicked(e);
-
+                    parts = weaponArrayList.get(index).getWeapon_image_path().split("\\.");
+                    imageIcon =  new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                            File.separator + "weapons" + File.separator + parts[0] + "_selected." + parts[1]);
+                    weaponButtons.get(index).setIcon(imageIcon);
                 }
 
                 @Override
@@ -49,6 +53,10 @@ public class WeaponSelectionMenu extends JPanel {
                 @Override
                 public void mouseEntered(MouseEvent e) {
                     super.mouseEntered(e);
+                    parts = weaponArrayList.get(index).getWeapon_image_path().split("\\.");
+                    imageIcon =  new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                            File.separator + "weapons" + File.separator + parts[0] + "_hover." + parts[1]);
+                    weaponButtons.get(index).setIcon(imageIcon);
                     weaponDescription[1].setText(weaponArrayList.get(index).getWeapon_name());
                     weaponDescription[3].setText(String.valueOf(weaponArrayList.get(index).getWeapon_strength()));
                     weaponDescription[5].setText(String.valueOf(weaponArrayList.get(index).getWeapon_speed()));
@@ -57,7 +65,14 @@ public class WeaponSelectionMenu extends JPanel {
                 @Override
                 public void mouseExited(MouseEvent e) {
                     super.mouseExited(e);
+                    imageIcon =  new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                            File.separator + "weapons" + File.separator + weaponArrayList.get(index).getWeapon_image_path());
+                    weaponButtons.get(index).setIcon(imageIcon);
+                    weaponDescription[1].setText("");
+                    weaponDescription[3].setText("");
+                    weaponDescription[5].setText("");
                 }
+
             });
         }
 
@@ -97,10 +112,6 @@ public class WeaponSelectionMenu extends JPanel {
         });
 
 
-
-        //PANEL 5 PHOTO TITTLE
-
-
         //ADD WEAPONS TO MAIN PANEL
 
         backgroundImageWeaponSelection.add(titlePanel);
@@ -133,9 +144,11 @@ public class WeaponSelectionMenu extends JPanel {
 
             imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
                     File.separator + "weapons" + File.separator + weaponArrayList.get(i).getWeapon_image_path());
-            ImageIcon image = new ImageIcon(imageIcon.getImage().getScaledInstance(143, 143, Image.SCALE_DEFAULT));
+            ImageIcon image = new ImageIcon(imageIcon.getImage().getScaledInstance(132, 132, Image.SCALE_DEFAULT));
             weaponButtons.add(new JButton(image));
             weaponButtons.get(i).setPreferredSize(new Dimension(132, 132));
+            weaponButtons.get(i).setContentAreaFilled(false);
+            weaponButtons.get(i).setBorderPainted(false);
         }
 
         weaponPanel.setPreferredSize(new Dimension(448, 450));

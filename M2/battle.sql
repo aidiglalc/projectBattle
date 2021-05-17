@@ -69,15 +69,15 @@ FOREIGN KEY (opponent_weapon_id) REFERENCES weapons(weapon_id)
 );
 
 INSERT INTO weapons(weapon_name, weapon_strength, weapon_speed, weapon_race, weapon_image_path, weapon_points) 
-VALUES ("Dagger", 0, 3, "Human, Elf", "dagger.jpg", 10),
-("Sword", 1, 1, "Human, Elf, Dwarf", "sword.jpg", 10),
-("Axe", 3, 0, "Human, Dwarf", "axe.jpg", 10),
-("Double Swords", 2, 2, "Human, Elf", "double_swords.jpg", 14),
-("Scimitar", 1, 2, "Human, Elf", "scimitar.jpg", 14),
-("Bow", 1, 5, "Elf", "bow.jpg", 15),
-("Katana", 2, 3, "Human", "katana.jpg", 18),
-("Dirk", 0, 4, "Human, Elf, Dwarf", "dirk.jpg", 12),
-("Two-handed Axe", 5, 0, "Dwarf", "two-handed_axe.jpg", 20);
+VALUES ("Dagger", 0, 3, "Human, Elf", "dagger.png", 10),
+("Sword", 1, 1, "Human, Elf, Dwarf", "sword.png", 10),
+("Axe", 3, 0, "Human, Dwarf", "axe.png", 10),
+("Double Swords", 2, 2, "Human, Elf", "double_swords.png", 14),
+("Scimitar", 1, 2, "Human, Elf", "scimitar.png", 14),
+("Bow", 1, 5, "Elf", "bow.png", 15),
+("Katana", 2, 3, "Human", "katana.png", 18),
+("Dirk", 0, 4, "Human, Elf, Dwarf", "dirk.png", 12),
+("Two-handed Axe", 5, 0, "Dwarf", "two-handed_axe.png", 20);
 
 INSERT INTO race(race, hp, strength, defense, agility, speed, race_points)
 VALUES ("Human", 50, 5, 3, 6, 5, 20),

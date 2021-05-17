@@ -205,7 +205,6 @@ public class RaceSelectionMenu extends JPanel {
         turnBackButtonPanel.add(turnBackButton);
         turnBackButtonPanel.setOpaque(false);
 
-
         // Here we make the three buttons to choose race
 
         for (int i = 0; i < jButtons.length; i++) {
