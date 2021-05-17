@@ -241,6 +241,8 @@ public class Ranking extends JPanel {
         return topTen;
     }
 
+    // This method reloads the ranking
+
     public void reloadRanking() {
         top = getTopTen();
         for (int i = 0; i < top.size(); i++){
