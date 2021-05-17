@@ -50,6 +50,23 @@ public class Ranking extends JPanel {
                 principalFrame = (Window) Frame.getFrames()[0];
                 principalFrame.swapWiew("Main Menu");
             }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "turn_back_button_hover.png");
+                turnBackButton.setIcon(imageIcon);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "turn_back_button.png");
+                turnBackButton.setIcon(imageIcon);
+            }
+
         });
 
         // We add the Statistics Panels into the center panel

@@ -105,6 +105,23 @@ public class CharacterSelectionMenu extends JPanel {
                 principalFrame = (Window) Frame.getFrames()[0];
                 principalFrame.swapWiew("Race Selection Menu");
             }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "turn_back_button_hover.png");
+                turnBackButton.setIcon(imageIcon);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "turn_back_button.png");
+                turnBackButton.setIcon(imageIcon);
+            }
+
         });
 
         screenPanel.add(characterPanel[0]); // Character Left

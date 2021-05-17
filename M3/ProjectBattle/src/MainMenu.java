@@ -47,6 +47,21 @@ public class MainMenu extends JPanel {
                     principalFrame.swapWiew("Fighting Menu");
                 }
             }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                icon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "fight_hover.png");
+                jButtons[0].setIcon(icon);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                icon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "fight.png");
+                jButtons[0].setIcon(icon);
+            }
         });
 
         // Choose Character Button
@@ -68,6 +83,21 @@ public class MainMenu extends JPanel {
                 jButtons[1].setIcon(icon);
                 principalFrame = (Window) Frame.getFrames()[0];
                 principalFrame.swapWiew("Race Selection Menu");
+            }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                icon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "choose_fighter_hover.png");
+                jButtons[1].setIcon(icon);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                icon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "choose_fighter.png");
+                jButtons[1].setIcon(icon);
             }
         });
 
@@ -107,6 +137,21 @@ public class MainMenu extends JPanel {
                     }
                 }
             }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                icon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "choose_weapon_hover.png");
+                jButtons[2].setIcon(icon);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                icon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "choose_weapon.png");
+                jButtons[2].setIcon(icon);
+            }
         });
 
 
@@ -130,6 +175,21 @@ public class MainMenu extends JPanel {
                 principalFrame = (Window) Frame.getFrames()[0];
                 principalFrame.swapWiew("Ranking Menu");
             }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                icon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "ranking_hover.png");
+                jButtons[3].setIcon(icon);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                icon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "ranking.png");
+                jButtons[3].setIcon(icon);
+            }
         });
 
 
@@ -152,6 +212,21 @@ public class MainMenu extends JPanel {
                 jButtons[4].setIcon(icon);
                 principalFrame = (Window) Frame.getFrames()[0];
                 principalFrame.dispose();
+            }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                icon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "exit_hover.png");
+                jButtons[4].setIcon(icon);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                icon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "exit.png");
+                jButtons[4].setIcon(icon);
             }
         });
 
