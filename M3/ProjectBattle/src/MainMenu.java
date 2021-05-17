@@ -173,6 +173,7 @@ public class MainMenu extends JPanel {
                         File.separator + "Icons" + File.separator + "ranking.png");
                 jButtons[3].setIcon(icon);
                 principalFrame = (Window) Frame.getFrames()[0];
+                principalFrame.getRanking().reloadRanking();
                 principalFrame.swapWiew("Ranking Menu");
             }
             @Override

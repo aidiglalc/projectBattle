@@ -97,8 +97,14 @@ VALUES ("Erdrick", 1, "Human_1.JPG", "<html>When he turned 18, he embarked to fi
 
 INSERT INTO players VALUES (1, "Pruebas");
 INSERT INTO game (player_id, warrior_id, warrior_weapon_id, total_points, enemies_defeated) 
-VALUES (1, 1, 1, 15000, 0), 
-(1, 1, 1, 13000, 0),
-(1, 1, 1, 14000, 0),
-(1, 1, 1, 11000, 0),
-(1, 1, 1, 12000, 0);
+VALUES (1, 1, 1, 15, 0), 
+(1, 1, 1, 13, 0),
+(1, 1, 1, 14, 0),
+(1, 1, 1, 11, 0),
+(1, 1, 1, 12, 0),
+(1, 1, 1, 13, 0),
+(1, 1, 1, 18, 0),
+(1, 1, 1, 1, 0),
+(1, 1, 1, 3, 0),
+(1, 1, 1, 4, 0),
+(1, 1, 1, 7, 0);

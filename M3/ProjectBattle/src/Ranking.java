@@ -240,4 +240,12 @@ public class Ranking extends JPanel {
         }
         return topTen;
     }
+
+    public void reloadRanking() {
+        top = getTopTen();
+        for (int i = 0; i < top.size(); i++){
+            name[i].setText((String)((ArrayList)top.get(i)).get(0));
+            points[i].setText((String.valueOf(((ArrayList)top.get(i)).get(1))));
+        }
+    }
 }

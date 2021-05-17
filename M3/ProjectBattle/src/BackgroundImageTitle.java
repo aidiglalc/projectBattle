@@ -211,3 +211,49 @@ class BackgroundWeapons extends JPanel {
         fondo.drawImage(image.getImage(),0,0,this);
     }
 }
+
+class HumanBackgroundSelection extends JPanel {
+    private ImageIcon image = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+            File.separator + "Backgrounds" + File.separator + "HumanBackground.png");
+
+    public HumanBackgroundSelection() {
+        setPreferredSize(new Dimension(448, 450));
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D fondo = (Graphics2D) g;
+        fondo.drawImage(image.getImage(),0,0,this);
+    }
+}
+class ElfBackgroundSelection extends JPanel {
+    private ImageIcon image = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+            File.separator + "Backgrounds" + File.separator + "ElfBackground.png");
+
+    public ElfBackgroundSelection() {
+        setPreferredSize(new Dimension(448, 450));
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D fondo = (Graphics2D) g;
+        fondo.drawImage(image.getImage(),0,0,this);
+    }
+}
+class DwarfBackgroundSelection extends JPanel {
+    private ImageIcon image = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+            File.separator + "Backgrounds" + File.separator + "DwarfBackground.png");
+
+    public DwarfBackgroundSelection() {
+        setPreferredSize(new Dimension(448, 450));
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D fondo = (Graphics2D) g;
+        fondo.drawImage(image.getImage(),0,0,this);
+    }
+}

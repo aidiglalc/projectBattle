@@ -1,6 +1,8 @@
 
 // This Class is just only for tests
 
+import javax.swing.*;
+
 public class Main {
     public static void main(String[] args) {
 
