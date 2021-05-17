@@ -30,6 +30,7 @@ public class WeaponSelectionMenu extends JPanel {
         this.race = race;
         initComponent();
 
+
         for (int i = 0; i < weaponArrayList.size(); i++){
             int index = i;
             weaponButtons.get(index).addMouseListener(new MouseAdapter() {
@@ -150,7 +151,6 @@ public class WeaponSelectionMenu extends JPanel {
             weaponButtons.get(i).setContentAreaFilled(false);
             weaponButtons.get(i).setBorderPainted(false);
         }
-
         weaponPanel.setPreferredSize(new Dimension(448, 450));
         weaponPanel.setOpaque(false);
 
@@ -177,8 +177,6 @@ public class WeaponSelectionMenu extends JPanel {
             weaponDescription[i].setFont(new Font("", Font.BOLD, 16));
             weaponDescription[i].setForeground(Color.WHITE);
             weaponDescriptionPanel.add(weaponDescription[i]);
-
-
         }
 
         mainPanel.add(weaponPanel);
