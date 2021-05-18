@@ -5,9 +5,13 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-
-
           new Window(); // Creates the main window
+        Data.enemy = new CombatAlgorithm().getOponentCharacter();
+        System.out.println(Data.enemy);
+        Data.enemyWeapon = new CombatAlgorithm().getOponentWeapon(Data.enemy.getRace());
+        System.out.println(Data.enemyWeapon);
+
+//        new CombatAlgorithm().getOponent();
 //        System.out.println(new Character().getRace("Human")); // Prints an ArrayList of the Humans with their stats
 //        System.out.println(new Character().getRace("Elf"));   // Prints an ArrayList of the Elves with their stats
 //        System.out.println(new Character().getRace("Dwarf")); // Prints an ArrayList of the Dwarves with their stats

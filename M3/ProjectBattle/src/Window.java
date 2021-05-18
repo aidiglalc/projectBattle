@@ -50,6 +50,10 @@ public class Window extends JFrame {
         return ranking;
     }
 
+    public Fight getFight() {
+        return fight;
+    }
+
     // This method changes the panel to other that is introduced previously
 
     public void swapWiew(String key) {
