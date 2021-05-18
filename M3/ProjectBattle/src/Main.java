@@ -2,15 +2,12 @@
 // This Class is just only for tests
 
 import javax.swing.*;
+import java.awt.*;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
     public static void main(String[] args) {
-          new Window(); // Creates the main window
-        Data.enemy = new CombatAlgorithm().getOponentCharacter();
-        System.out.println(Data.enemy);
-        Data.enemyWeapon = new CombatAlgorithm().getOponentWeapon(Data.enemy.getRace());
-        System.out.println(Data.enemyWeapon);
-
+          EventQueue.invokeLater(()->new Window()); // Creates the main window
 //        new CombatAlgorithm().getOponent();
 //        System.out.println(new Character().getRace("Human")); // Prints an ArrayList of the Humans with their stats
 //        System.out.println(new Character().getRace("Elf"));   // Prints an ArrayList of the Elves with their stats

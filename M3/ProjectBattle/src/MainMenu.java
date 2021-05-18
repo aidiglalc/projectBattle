@@ -30,8 +30,6 @@ public class MainMenu extends JPanel {
                 icon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
                         File.separator + "Icons" + File.separator + "fight_pressed.png");
                 jButtons[0].setIcon(icon);
-                System.out.println(Data.player);
-                System.out.println(Data.playerWeapon);
             }
 
             @Override
@@ -43,6 +41,8 @@ public class MainMenu extends JPanel {
                 if (Data.playerWeapon == null) JOptionPane.showMessageDialog(null,
                         "Select your weapon before to begin the fight!", "No Weapon Selected!", JOptionPane.ERROR_MESSAGE);
                 else {
+                    Data.enemy = new EnemyGenerator().getOponentCharacter();
+                    Data.enemyWeapon = new EnemyGenerator().getOponentWeapon(Data.enemy.getRace());
                     principalFrame = (Window) Frame.getFrames()[0];
                     principalFrame.getFight().reloadScreen();
                     principalFrame.swapWiew("Fighting Menu");
@@ -121,7 +121,7 @@ public class MainMenu extends JPanel {
                         File.separator + "Icons" + File.separator + "choose_weapon.png");
                 jButtons[2].setIcon(icon);
 
-                if (Data.player == null) JOptionPane.showMessageDialog(null,
+                if (Data.player.getWarrior_id() == 0) JOptionPane.showMessageDialog(null,
                         "Select your character before choosing your Weapon!", "No Character Selected!", JOptionPane.ERROR_MESSAGE);
                 else {
                     if (Data.player.getRace().equalsIgnoreCase("Human")){

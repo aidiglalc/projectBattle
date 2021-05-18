@@ -257,3 +257,19 @@ class DwarfBackgroundSelection extends JPanel {
         fondo.drawImage(image.getImage(),0,0,this);
     }
 }
+
+class CombatCharacterBackground extends JPanel {
+    private ImageIcon image = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+            File.separator + "Backgrounds" + File.separator + "CombatCharacterBackground.png");
+
+    public CombatCharacterBackground() {
+        setPreferredSize(new Dimension(345, 460));
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D fondo = (Graphics2D) g;
+        fondo.drawImage(image.getImage(),0,0,this);
+    }
+}

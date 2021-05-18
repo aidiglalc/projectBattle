@@ -131,7 +131,9 @@ public class Character {
                 "warrior_id=" + warrior_id +
                 ", warrior_name='" + warrior_name + '\'' +
                 ", warrior_image_path='" + warrior_image_path + '\'' +
+                ", warrior_lore='" + warrior_lore + '\'' +
                 ", race='" + race + '\'' +
+                ", currenthp=" + currenthp +
                 ", hp=" + hp +
                 ", strength=" + strength +
                 ", defense=" + defense +
@@ -141,7 +143,7 @@ public class Character {
                 '}';
     }
 
-    // With this method you input a race that exists in the database and returns an ArrayList of the characters of that race
+// With this method you input a race that exists in the database and returns an ArrayList of the characters of that race
 
     public ArrayList<Character> getRace(String race) {
         ArrayList<Character> characters = new ArrayList<Character>();

@@ -1,152 +1,190 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 
-
 public class Fight extends JPanel {
-    private JPanel panel[] = new JPanel[9];
-    private JLabel label[] = new JLabel[13];
-    private JLabel titleFightLabel;
-    private JButton button[]=new JButton[5];
+    private JPanel buttonPanel;
+    private JPanel playerPanel;
+    private JPanel enemyPanel;
+    private JPanel playerSumPanel;
+    private JPanel enemySumPanel;
+    private JPanel bodyPanel;
+    private JPanel playerStatsPanel;
+    private JPanel enemyStatsPanel;
+    private JPanel invisiblePanel[] = new JPanel[2];
+    private JPanel characterSeparation;
+    private JPanel playerHpPanel;
+    private JPanel enemyHpPanel;
+    private JButton button[] = new JButton[5];
     private BackgroundImageFighting backgroundImageFighting = new BackgroundImageFighting();
-    private JTextArea textarea=new JTextArea(5,100);
-    private JScrollPane scrollpane;
-    private JProgressBar progressBar1 = new JProgressBar(0, 100);//barra de vida player1
-    private JProgressBar progressBar2 = new JProgressBar(0, 100);//barra de vida player2
-    private JLabel infoPlayer1[]=new JLabel[8];//LABELS INFO PLAYER 1
-    private JLabel infoPlayer2[]=new JLabel[8];//LABELS INFO PLAYER 2
-    private JLabel imagenPlayer1;
-    private JLabel imagenPlayer2;
-    private ImageIcon image1;
-    private ImageIcon image2;
-
+    private static JTextArea textArea;
+    private JScrollPane scrollPane;
+    private static JProgressBar playerProgressBar;
+    private static JProgressBar enemyProgressBar;
+    private JLabel infoPlayer[] = new JLabel[8];//LABELS INFO PLAYER 1
+    private JLabel infoEnemy[] = new JLabel[8];//LABELS INFO PLAYER 2
+    private JLabel imagePlayer;
+    private JLabel imageEnemy;
+    private JLabel weaponImagePlayer;
+    private JLabel weaponImageEnemy;
+    private JPanel playerStats;
+    private JPanel enemyStats;
+    private JLabel playerRemainingHpLabel;
+    private JLabel enemyRemainingHpLabel;
+    private JLabel playerTotalHpLabel;
+    private JLabel enemyTotalHpLabel;
+    private JLabel playerNameLabel;
+    private JLabel enemyNameLabel;
+    private ImageIcon imageIcon;
+    private Window principalFrame;
 
     public Fight() {
-        //COLOR JPROGRESSBAR
+
+        // Here we set the JProgress Bar
+
         UIManager.put("ProgressBar.background", Color.white);//colour of the background
         UIManager.put("ProgressBar.foreground", Color.green);//colour of progress bar
-        UIManager.put("ProgressBar.selectionBackground", Color.red);//colour of percentage counter on black background
+        UIManager.put("ProgressBar.selectionBackground", Color.black);//colour of percentage counter on black background
         UIManager.put("ProgressBar.selectionForeground", Color.black);//colour of precentage counter on red background
-
-        progressBar1 = new JProgressBar();
-        progressBar1.setStringPainted(true); // para mostrar el porcentage como texto en la barra
-
-        progressBar2 = new JProgressBar();
-        progressBar2.setStringPainted(true);
 
         initComponent();
 
-        //TextArea and ScrolllPane
-        textarea.setLineWrap(true);//salto de linea al llegar al final de textarea
-        textarea.setBounds(30, 30, 1000, 800);
-        scrollpane = new JScrollPane(textarea);
-        scrollpane.setBounds(30, 30, 300, 800);
+        // We add the two buttons and their functionality
 
-        //TITTLE RANKING
-        panel[0].add(titleFightLabel);
-        panel[0].setPreferredSize(new Dimension(1280, 50));
+        button[0].addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mouseClicked(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "fight_button_selected.png");
+                button[0].setIcon(imageIcon);
 
-        //BARRA DE VIDA PLAYER1
-        progressBar1.setValue(100);
-        progressBar1.setBounds(5, 10, 530, 30);
-        progressBar1.setPreferredSize(new Dimension(50,30));
-        progressBar1.setStringPainted(true); //Agrega el porcentaje en la barra
-        button[0].addActionListener(new buttonFight());
+            }
 
-        //BARRA DE VIDA PLAYER2
-        progressBar2.setValue(100);
-        progressBar2.setPreferredSize(new Dimension(50,30));
-        progressBar2.setBounds(5, 10, 530, 30);
-        progressBar2.setStringPainted(true); //Agrega el porcentaje en la barra
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "fight_button.png");
+                button[0].setIcon(imageIcon);
+                button[0].setEnabled(false);
+                fight();
+            }
 
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "fight_button_hover.png");
+                button[0].setIcon(imageIcon);
+            }
 
-        //PLAYER 1
-        panel[2].setBorder(BorderFactory.createLineBorder(Color.black));
-        panel[2].setPreferredSize(new Dimension(545, 400));
-
-        //PLAYER 2
-        panel[3].setBorder(BorderFactory.createLineBorder(Color.black));
-        panel[3].setPreferredSize(new Dimension(545, 400));
-
-        //PANEL BUTTON INF
-        panel[4].setPreferredSize(new Dimension(1280, 37));
-        panel[4].setBorder(BorderFactory.createLineBorder(Color.black));
-
-        //PANEL BUTTON SUP
-        panel[5].setPreferredSize(new Dimension(1280, 37));
-        panel[5].setBorder(BorderFactory.createLineBorder(Color.black));
-
-        //PANEL TEXTAREA
-        panel[6].setPreferredSize(new Dimension(1280,100));
-        panel[6].setBorder(BorderFactory.createLineBorder(Color.black));
-
-        //PANEL JLABEL INFO PLAYER1
-        panel[7].setBorder(BorderFactory.createLineBorder(Color.black));
-        panel[7].setLayout(new GridLayout(4,2));
-
-        //PANEL JLABEL INFO PLAYER2
-        panel[8].setBorder(BorderFactory.createLineBorder(Color.black));
-        panel[8].setLayout(new GridLayout(4,2));
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "fight_button.png");
+                button[0].setIcon(imageIcon);
+            }
+        });
 
 
-        //ADDING TITTLE FIGHTING ON PANEL0
-        backgroundImageFighting.add(panel[0]);
+        button[1].addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mouseClicked(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "results_button_selected.png");
+                button[1].setIcon(imageIcon);
 
-        //ADDING LABELS TO PANEL7
-        panel[7].add(infoPlayer1[0]);
-        panel[7].add(infoPlayer1[1]);
-        panel[7].add(infoPlayer1[2]);
-        panel[7].add(infoPlayer1[3]);
-        panel[7].add(infoPlayer1[4]);
-        panel[7].add(infoPlayer1[5]);
-        panel[7].add(infoPlayer1[6]);
-        panel[7].add(infoPlayer1[7]);
-        panel[7].setLayout(new GridLayout(4,2));
+            }
 
-        //ADDING LABELS TO PANEL7
-        panel[8].add(infoPlayer2[0]);
-        panel[8].add(infoPlayer2[1]);
-        panel[8].add(infoPlayer2[2]);
-        panel[8].add(infoPlayer2[3]);
-        panel[8].add(infoPlayer2[4]);
-        panel[8].add(infoPlayer2[5]);
-        panel[8].add(infoPlayer2[6]);
-        panel[8].add(infoPlayer2[7]);
-        panel[8].setLayout(new GridLayout(4,2));
-
-        //añadiendo la barra de vida al panel 2
-        panel[2].setLayout(new BorderLayout());
-        panel[2].add(progressBar1,BorderLayout.NORTH);
-        panel[2].add(panel[7],BorderLayout.SOUTH);//ADDING PANEL7(LABELS INFOR PLAYER1) TO PANEL2
-        panel[2].add(imagenPlayer1,BorderLayout.CENTER);
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                principalFrame = (Window) Frame.getFrames()[0];
+                principalFrame.swapWiew("Main Menu");
+                button[1].setEnabled(false);
+                button[1].setVisible(false);
+                button[0].setVisible(true);
+                button[0].setEnabled(true);
+                enemyProgressBar.setValue(100);
+                enemyProgressBar.setForeground(Color.green);
+                playerProgressBar.setValue(100);
+                playerProgressBar.setForeground(Color.green);
+                textArea.setText("");
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "results_button.png");
+                button[1].setIcon(imageIcon);
 
 
-        //añadiendo la barra de vida al panel 3
-        panel[3].setLayout(new BorderLayout());
-        panel[3].add(progressBar2,BorderLayout.NORTH);
-        panel[3].add(panel[8],BorderLayout.SOUTH);//ADDING PANEL8(LABELS INFOR PLAYER2) TO PANEL3
-        panel[3].add(imagenPlayer2,BorderLayout.CENTER);
+            }
 
-        panel[1].add(panel[2]); //ADDING PANEL2(PLAYER1) ON PANEL1
-        panel[1].add(panel[3]); //ADDING PANEL3(PLAYER2) ON PANEL1
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "results_button_hover.png");
+                button[1].setIcon(imageIcon);
+            }
 
-        panel[4].add(button[0],BorderLayout.CENTER); //ADDING BUTTON0 ON PANEL4(INF)
-        panel[4].add(button[1],BorderLayout.CENTER); //ADDING BUTTON1 ON PANEL4(INF)
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "results_button.png");
+                button[1].setIcon(imageIcon);
+            }
+        });
 
-        panel[5].add(button[2],BorderLayout.CENTER);//ADDING BUTTON0 ON PANEL5(SUP)
-        panel[5].add(button[3],BorderLayout.CENTER);//ADDING BUTTON0 ON PANEL5(SUP)
-        panel[5].add(button[4],BorderLayout.CENTER);//ADDING BUTTON0 ON PANEL5(SUP)
+        // Here we construct the player portrait with the other pieces we have
 
-        panel[6].add(scrollpane,BorderLayout.CENTER);//ADDING SCROLLPANE ON PANEL6
+        playerHpPanel.add(playerRemainingHpLabel);
+        playerHpPanel.add(playerTotalHpLabel);
+        playerSumPanel.add(playerHpPanel);
 
+        playerStatsPanel.add(invisiblePanel[0]);
+        playerStatsPanel.add(weaponImagePlayer);
+        playerStatsPanel.add(playerStats);
 
-        backgroundImageFighting.add(panel[0]);
-        backgroundImageFighting.add(panel[5]);
-        backgroundImageFighting.add(panel[1]);
-        backgroundImageFighting.add(panel[4]);
-        backgroundImageFighting.add(panel[6]);
+        playerPanel.add(playerNameLabel);
+        playerPanel.add(imagePlayer);
+        playerPanel.add(playerSumPanel);
+        playerPanel.add(playerStatsPanel);
+
+        // And now the enmy Panel
+
+        enemyHpPanel.add(enemyRemainingHpLabel);
+        enemyHpPanel.add(enemyTotalHpLabel);
+        enemySumPanel.add(enemyHpPanel);
+
+        enemyStatsPanel.add(invisiblePanel[1]);
+        enemyStatsPanel.add(weaponImageEnemy);
+        enemyStatsPanel.add(enemyStats);
+
+        enemyPanel.add(enemyNameLabel);
+        enemyPanel.add(imageEnemy);
+        enemyPanel.add(enemySumPanel);
+        enemyPanel.add(enemyStatsPanel);
+
+        // With those two we ensamble the body
+
+        bodyPanel.add(playerPanel); //ADDING PANEL2(PLAYER1) ON PANEL1
+        bodyPanel.add(characterSeparation);
+        bodyPanel.add(enemyPanel); //ADDING PANEL3(PLAYER2) ON PANEL1
+        bodyPanel.add(scrollPane, BorderLayout.CENTER);//ADDING SCROLLPANE ON PANEL6
+
+        // We add the buttons to their pannel
+
+        buttonPanel.add(button[0], BorderLayout.CENTER); //ADDING BUTTON0 ON PANEL4(INF)
+        buttonPanel.add(button[1], BorderLayout.CENTER); //ADDING BUTTON1 ON PANEL4(INF)
+
+        // Add the two main panels to the background and add them to this class
+
+        backgroundImageFighting.add(bodyPanel);
+        backgroundImageFighting.add(buttonPanel);
 
         add(backgroundImageFighting);
 
@@ -154,115 +192,369 @@ public class Fight extends JPanel {
 
     public void initComponent() {
 
-        for (int i = 0; i < panel.length; i++) {
-            panel[i] = new JPanel();
-            panel[i].setOpaque(false);
+        // HP bar for player
+
+        playerProgressBar = new JProgressBar();
+        playerProgressBar.setStringPainted(true);
+        playerProgressBar.setValue(100);
+        playerProgressBar.setBounds(0, 0, 30, 30);
+        playerProgressBar.setPreferredSize(new Dimension(200, 30));
+
+        // HP bar for enemy
+
+        enemyProgressBar = new JProgressBar();
+        enemyProgressBar.setStringPainted(true);
+        enemyProgressBar.setValue(100);
+        enemyProgressBar.setPreferredSize(new Dimension(200, 30));
+        enemyProgressBar.setBounds(5, 10, 200, 30);
+
+        // Text Area that informs the player how the game is going
+
+        textArea = new JTextArea(6, 80);
+        textArea.setLineWrap(true);//salto de linea al llegar al final de textarea
+        textArea.setBounds(30, 30, 1000, 800);
+        textArea.setEditable(false);
+
+        scrollPane = new JScrollPane(textArea);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setBounds(30, 30, 300, 800);
+
+        // Here we set the panels of the player and the enemy
+
+        playerPanel = new CombatCharacterBackground();
+        playerPanel.setOpaque(false);
+        playerPanel.setPreferredSize(new Dimension(345, 460));
+
+        playerSumPanel = new JPanel();
+        playerSumPanel.setLayout(new BoxLayout(playerSumPanel, BoxLayout.Y_AXIS));
+        playerSumPanel.setPreferredSize(new Dimension(200,50));
+        playerSumPanel.add(playerProgressBar);
+        playerSumPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        playerSumPanel.setOpaque(false);
+
+
+        enemyPanel = new CombatCharacterBackground();
+        enemyPanel.setOpaque(false);
+        enemyPanel.setPreferredSize(new Dimension(345, 460));
+
+        enemySumPanel = new JPanel();
+        enemySumPanel.setLayout(new BoxLayout(enemySumPanel, BoxLayout.Y_AXIS));
+        enemySumPanel.setPreferredSize(new Dimension(200,50));
+        enemySumPanel.add(enemyProgressBar);
+        enemySumPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        enemySumPanel.setOpaque(false);
+
+        playerStats = new JPanel();
+        playerStats.setLayout(new GridLayout(4, 2));
+        playerStats.setOpaque(false);
+
+        enemyStats = new JPanel();
+        enemyStats.setLayout(new GridLayout(4, 2));
+        enemyStats.setOpaque(false);
+
+        for (int i = 0; i < invisiblePanel.length; i++) {
+            invisiblePanel[i] = new JPanel();
+            invisiblePanel[i].setPreferredSize(new Dimension(50, 90));
+            invisiblePanel[i].setOpaque(false);
         }
 
-        //TITTLE FIGHTING
-        titleFightLabel = new JLabel("FIGHTING");
-        titleFightLabel.setFont(new Font("", Font.BOLD, 36));
+        characterSeparation = new JPanel();
+        characterSeparation.setPreferredSize(new Dimension(150, 0));
+        characterSeparation.setOpaque(false);
 
-        //BUTTONS
-        button[0]=new JButton("Fight");
-        button[1]=new JButton("Clear Console");
-        button[2]=new JButton("Choose Character");
-        button[3]=new JButton("Choose Weapon");
-        button[4]=new JButton("Ranking");
+        bodyPanel = new JPanel();
+        bodyPanel.setOpaque(false);
+        bodyPanel.setPreferredSize(new Dimension (1280,570));
 
-        //LABELS INFO PLAYER1
-        infoPlayer1[0]=new JLabel("Strength");
-        infoPlayer1[0].setForeground(new Color(255,255,255));
-        infoPlayer1[1]=new JLabel("0");
-        infoPlayer1[1].setForeground(new Color(255,255,255));
-        infoPlayer1[2]=new JLabel("Defense");
-        infoPlayer1[2].setForeground(new Color(255,255,255));
-        infoPlayer1[3]=new JLabel("0");
-        infoPlayer1[3].setForeground(new Color(255,255,255));
-        infoPlayer1[4]=new JLabel("Agility");
-        infoPlayer1[4].setForeground(new Color(255,255,255));
-        infoPlayer1[5]=new JLabel("0");
-        infoPlayer1[5].setForeground(new Color(255,255,255));
-        infoPlayer1[6]=new JLabel("Speed");
-        infoPlayer1[6].setForeground(new Color(255,255,255));
-        infoPlayer1[7]=new JLabel("0");
-        infoPlayer1[7].setForeground(new Color(255,255,255));
+        playerStatsPanel = new JPanel();
+        playerStatsPanel.setPreferredSize(new Dimension(345, 100));
+        playerStatsPanel.setOpaque(false);
 
-        //LABELS INFO PLAYER2
-        infoPlayer2[0]=new JLabel("Strength");
-        infoPlayer2[0].setForeground(new Color(255,255,255));
-        infoPlayer2[1]=new JLabel("0");
-        infoPlayer2[1].setForeground(new Color(255,255,255));
-        infoPlayer2[2]=new JLabel("Defense");
-        infoPlayer2[2].setForeground(new Color(255,255,255));
-        infoPlayer2[3]=new JLabel("0");
-        infoPlayer2[3].setForeground(new Color(255,255,255));
-        infoPlayer2[4]=new JLabel("Agility");
-        infoPlayer2[4].setForeground(new Color(255,255,255));
-        infoPlayer2[5]=new JLabel("0");
-        infoPlayer2[5].setForeground(new Color(255,255,255));
-        infoPlayer2[6]=new JLabel("Speed");
-        infoPlayer2[6].setForeground(new Color(255,255,255));
-        infoPlayer2[7]=new JLabel("0");
-        infoPlayer2[7].setForeground(new Color(255,255,255));
+        playerHpPanel = new JPanel();
+        playerHpPanel.setOpaque(false);
+        playerRemainingHpLabel = new JLabel("60");
+        playerRemainingHpLabel.setForeground(Color.WHITE);
+        playerTotalHpLabel = new JLabel("/ 60");
+        playerTotalHpLabel.setForeground(Color.WHITE);
 
+        playerNameLabel = new JLabel("PRUEBAS", SwingConstants.CENTER);
+        playerNameLabel.setPreferredSize(new Dimension(300, 30));
+        playerNameLabel.setForeground(Color.WHITE);
 
-        //IMAGEN PLAYER1
-        image1 = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
-                File.separator + "Characters" + File.separator + Data.player.getWarrior_image_path());
-        ImageIcon imagen1=new ImageIcon(image1.getImage().getScaledInstance(270,320, Image.SCALE_DEFAULT));
-        imagenPlayer1 = new JLabel(imagen1);
+        enemyStatsPanel = new JPanel();
+        enemyStatsPanel.setPreferredSize(new Dimension(345, 100));
+        enemyStatsPanel.setOpaque(false);
 
-        //IMAGEN PLAYER2
-        image2 = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
-                File.separator + "Characters" + File.separator + Data.enemy.getWarrior_image_path());
-        ImageIcon imagen2=new ImageIcon(image2.getImage().getScaledInstance(270,320, Image.SCALE_DEFAULT));
-        imagenPlayer2 = new JLabel(imagen2);
+        enemyHpPanel = new JPanel();
+        enemyHpPanel.setOpaque(false);
+        enemyRemainingHpLabel = new JLabel("60");
+        enemyRemainingHpLabel.setForeground(Color.WHITE);
+        enemyTotalHpLabel = new JLabel("/ 60");
+        enemyTotalHpLabel.setForeground(Color.WHITE);
+
+        enemyNameLabel = new JLabel("PRUEBAS", SwingConstants.CENTER);
+        enemyNameLabel.setPreferredSize(new Dimension(300, 30));
+        enemyNameLabel.setForeground(Color.WHITE);
+
+        weaponImagePlayer = new JLabel();
+        weaponImageEnemy = new JLabel();
+
+        // Here we handle the button creation
+
+        buttonPanel = new JPanel();
+        buttonPanel.setPreferredSize(new Dimension(1280, 60));
+        buttonPanel.setOpaque(false);
+
+        imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                File.separator + "Icons" + File.separator + "fight_button.png");
+
+        button[0] = new JButton(imageIcon);
+
+        imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                File.separator + "Icons" + File.separator + "results_button.png");
+
+        button[1] = new JButton("Results");
+        button[0].setPreferredSize(new Dimension(200, 50));
+        button[1].setPreferredSize(new Dimension(200, 50));
+        button[1].setEnabled(false);
+        button[1].setVisible(false);
+        button[0].setContentAreaFilled(false);
+        button[0].setBorderPainted(false);
+        button[1].setContentAreaFilled(false);
+        button[1].setBorderPainted(false);
+
+        // And now we create the labels for the player
+
+        for (int i = 0; i < infoPlayer.length; i++) {
+            if (i == 0) {
+                infoPlayer[i] = new JLabel("Strength: ");
+                infoPlayer[i].setPreferredSize(new Dimension(60, 20));
+                infoEnemy[i] = new JLabel("Strength: ");
+                infoEnemy[i].setPreferredSize(new Dimension(60, 20));
+            }
+            else if (i == 2) {
+                infoPlayer[i] = new JLabel("Defense: ");
+                infoPlayer[i].setPreferredSize(new Dimension(60, 20));
+                infoEnemy[i] = new JLabel("Defense: ");
+                infoEnemy[i].setPreferredSize(new Dimension(60, 20));
+            }
+            else if (i == 4) {
+                infoPlayer[i] = new JLabel("Agility: ");
+                infoPlayer[i].setPreferredSize(new Dimension(60, 20));
+                infoEnemy[i] = new JLabel("Agility: ");
+                infoEnemy[i].setPreferredSize(new Dimension(60, 20));
+            }
+            else if (i == 6) {
+                infoPlayer[i] = new JLabel("Speed: ");
+                infoPlayer[i].setPreferredSize(new Dimension(60, 20));
+                infoEnemy[i] = new JLabel("Speed: ");
+                infoEnemy[i].setPreferredSize(new Dimension(60, 20));
+            }
+            else {
+                infoPlayer[i] = new JLabel("");
+                infoPlayer[i].setPreferredSize(new Dimension(60, 20));
+                infoEnemy[i] = new JLabel("");
+                infoEnemy[i].setPreferredSize(new Dimension(60, 20));
+            }
+
+            infoPlayer[i].setForeground(Color.WHITE);
+            infoEnemy[i].setForeground(Color.WHITE);
+            playerStats.add(infoPlayer[i]);
+            enemyStats.add(infoEnemy[i]);
+        }
+
+        imagePlayer = new JLabel();
+        imagePlayer.setPreferredSize(new Dimension(200, 250));
+
+        imageEnemy = new JLabel();
+        imageEnemy.setPreferredSize(new Dimension(200, 250));
 
     }
-    public class buttonFight implements ActionListener{
-        @Override
-        public void actionPerformed (ActionEvent e){
-            new Thread(new Hilo()).start();
-            button[0].setEnabled(false);
-        }
 
-        public class Hilo implements Runnable{
-            @Override
-            public void run(){
-                //esto es lo q deberia poner aqui y lo demas borrarlo para q la barra se disminuya por el daño que le hagan
-                //barra.setValue(barra.getValue()-daño);
-                //barra.repaint(); //
-                for (int i=100; i>=0; i--){//el for no me haria falta, el thread.sleep si quiero ver como baja la barrita si lo pondre
-                    progressBar2.setValue(i); //cambia el estado de la barra en i unidades
-                    progressBar2.repaint(); //"repinta" el estado de la barra a el actual
-                    try{
-                        Thread.sleep(50); //relentiza el hilo 50 milisegundos
-                    } catch (InterruptedException e){}
+    // This method reloads the screen with the updated information
+
+    public void reloadScreen() {
+        imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                File.separator + "Characters" + File.separator + Data.player.getWarrior_image_path());
+        ImageIcon imagen1 = new ImageIcon(imageIcon.getImage().getScaledInstance(200, 250, Image.SCALE_DEFAULT));
+        imagePlayer.setIcon(imagen1);
+
+        infoPlayer[1].setText(String.valueOf(Data.player.getStrength() + Data.playerWeapon.getWeapon_strength()));
+        infoPlayer[3].setText(String.valueOf(Data.player.getDefense()));
+        infoPlayer[5].setText(String.valueOf(Data.player.getAgility()));
+        infoPlayer[7].setText(String.valueOf(Data.player.getSpeed() + Data.playerWeapon.getWeapon_speed()));
+
+        imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                File.separator + "Characters" + File.separator + Data.enemy.getWarrior_image_path());
+        ImageIcon imagen2 = new ImageIcon(imageIcon.getImage().getScaledInstance(200, 250, Image.SCALE_DEFAULT));
+        imageEnemy.setIcon(imagen2);
+
+        infoEnemy[1].setText(String.valueOf(Data.enemy.getStrength() + Data.enemyWeapon.getWeapon_strength()));
+        infoEnemy[3].setText(String.valueOf(Data.enemy.getDefense()));
+        infoEnemy[5].setText(String.valueOf(Data.enemy.getAgility()));
+        infoEnemy[7].setText(String.valueOf(Data.enemy.getSpeed() + Data.enemyWeapon.getWeapon_speed()));
+
+        imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                File.separator + "weapons" + File.separator + Data.playerWeapon.getWeapon_image_path());
+
+        imagen1 = new ImageIcon(imageIcon.getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
+
+        weaponImagePlayer.setIcon(imagen1);
+
+        imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                File.separator + "weapons" + File.separator + Data.enemyWeapon.getWeapon_image_path());
+
+        imagen1 = new ImageIcon(imageIcon.getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
+
+        weaponImageEnemy.setIcon(imagen1);
+
+        playerRemainingHpLabel.setText(String.valueOf(Data.player.getCurrenthp()));
+        playerTotalHpLabel.setText("/ " + Data.player.getHp());
+        playerNameLabel.setText(Data.player.getWarrior_name());
+
+        enemyRemainingHpLabel.setText(String.valueOf(Data.enemy.getCurrenthp()));
+        enemyTotalHpLabel.setText("/ " + Data.enemy.getHp());
+        enemyNameLabel.setText(Data.enemy.getWarrior_name());
+    }
+
+    // This method handles the fight
+
+    public void fight() {
+
+        // We add the fight into a threat to make some animations and make the battle go step by step
+
+        Thread thread = new Thread(() -> {
+            boolean flagPlayerAttack = false; // This flag controls if the player attacks first or not
+            boolean playerTurn = true;
+            boolean enemyTurn = true;
+            int damageDone = 0;
+
+            // We make the choice of what player begins their turn
+
+            if (Data.player.getSpeed() + Data.playerWeapon.getWeapon_speed() > Data.enemy.getSpeed() + Data.enemyWeapon.getWeapon_speed())
+                flagPlayerAttack = true;
+            else if (Data.player.getSpeed() + Data.playerWeapon.getWeapon_speed() < Data.enemy.getSpeed() + Data.enemyWeapon.getWeapon_speed())
+                flagPlayerAttack = false;
+            else if (Data.player.getAgility() > Data.enemy.getAgility()) flagPlayerAttack = true;
+            else if (Data.player.getAgility() < Data.enemy.getAgility()) flagPlayerAttack = false;
+            else {
+                if ((int) (Math.random() * 100) >= 50) flagPlayerAttack = true;
+                else flagPlayerAttack = false;
+            }
+
+            // Now we make a playerfight until one of those two dies by the logic asigned in the project information
+
+            while (Data.player.getCurrenthp() > 0 && Data.enemy.getCurrenthp() > 0) {
+                if (flagPlayerAttack == true && Data.enemy.getCurrenthp() > 0 && Data.player.getCurrenthp() > 0) {
+
+                    textArea.append(Data.player.getWarrior_name() + " attacks! ");
+                    while (playerTurn) {
+                        if (Data.player.getAgility() * 10 > (int) (Math.random() * 100) + 1) {
+                            if (Data.enemy.getAgility() > (int) ((Math.random()) * 50) + 1) {
+                                textArea.append(Data.enemy.getWarrior_name() + " dodges the attack!\n");
+                            } else {
+                                damageDone = Data.player.getStrength() + Data.playerWeapon.getWeapon_strength() - Data.enemy.getDefense();
+                                textArea.append(Data.player.getWarrior_name() + " hits " + Data.enemy.getWarrior_name() + " for " + damageDone + " points of damage!\n");
+
+                                for (int i = 0; i < damageDone; i++) {
+                                    Data.enemy.setCurrenthp(Data.enemy.getCurrenthp() - 1);
+                                    enemyRemainingHpLabel.setText(String.valueOf(Data.enemy.getCurrenthp()));
+                                    enemyProgressBar.setValue((int)(((float)Data.enemy.getCurrenthp() / (float)Data.enemy.getHp()) * 100));
+                                    enemyProgressBar.repaint();
+                                    if ((int)(((float)Data.enemy.getCurrenthp() / (float)Data.enemy.getHp()) * 100) <= 20) enemyProgressBar.setForeground(Color.RED);
+                                    else if ((int)(((float)Data.enemy.getCurrenthp() / (float)Data.enemy.getHp()) * 100) <= 50) enemyProgressBar.setForeground(Color.YELLOW);
+                                    try {
+                                        Thread.sleep(50);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+                        } else {
+                            textArea.append(Data.player.getWarrior_name() + " attack misses!\n");
+                        }
+
+                        if ((Data.player.getSpeed() + Data.playerWeapon.getWeapon_speed()) <= (Data.enemy.getSpeed() + Data.enemyWeapon.getWeapon_speed())) {
+                            playerTurn = false;
+                            enemyTurn = true;
+                        } else if (((Data.player.getSpeed() + Data.playerWeapon.getWeapon_speed()) - (Data.enemy.getSpeed() + Data.enemyWeapon.getWeapon_speed())) * 10
+                                > (int) (Math.random() * 100) + 1 && Data.player.getCurrenthp() > 0 && Data.enemy.getCurrenthp() > 0) {
+                            textArea.append(Data.player.getWarrior_name() + " attacks again! ");
+                        } else {
+                            playerTurn = false;
+                            enemyTurn = true;
+                        }
+
+                        textArea.setSelectionStart(textArea.getText().length());
+
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+                if (Data.enemy.getCurrenthp() > 0 && Data.player.getCurrenthp() > 0) {
+                    textArea.append(Data.enemy.getWarrior_name() + " attacks! ");
+                    while (enemyTurn) {
+                        if (Data.enemy.getAgility() * 10 > (int) (Math.random() * 100) + 1) {
+                            if (Data.player.getAgility() > (int) ((Math.random()) * 50) + 1) {
+                                textArea.append(Data.player.getWarrior_name() + " dodges the attack!\n");
+                            } else {
+                                damageDone = Data.enemy.getStrength() + Data.enemyWeapon.getWeapon_strength() - Data.player.getDefense();
+                                textArea.append(Data.enemy.getWarrior_name() + " hits " + Data.player.getWarrior_name() + " for " + damageDone + " points of damage!\n");
+                                for (int i = 0; i < damageDone; i++) {
+                                    Data.player.setCurrenthp(Data.player.getCurrenthp() - 1);
+                                    playerRemainingHpLabel.setText(String.valueOf(Data.player.getCurrenthp()));
+                                    playerProgressBar.setValue((int)(((float)Data.player.getCurrenthp() / (float)Data.player.getHp()) * 100));
+                                    playerProgressBar.repaint();
+                                    if ((int)(((float)Data.player.getCurrenthp() / (float)Data.player.getHp()) * 100) <= 20) playerProgressBar.setForeground(Color.RED);
+                                    else if ((int)(((float)Data.player.getCurrenthp() / (float)Data.player.getHp()) * 100) <= 50) playerProgressBar.setForeground(Color.YELLOW);
+                                    try {
+                                        Thread.sleep(50);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+                        } else {
+                            textArea.append(Data.enemy.getWarrior_name() + " attack misses!\n");
+                        }
+
+                        if ((Data.enemy.getSpeed() + Data.enemyWeapon.getWeapon_speed()) <= (Data.player.getSpeed() + Data.playerWeapon.getWeapon_speed())) {
+                            enemyTurn = false;
+                            playerTurn = true;
+                            flagPlayerAttack = true;
+                        } else if (((Data.enemy.getSpeed() + Data.enemyWeapon.getWeapon_speed()) - (Data.player.getSpeed() + Data.playerWeapon.getWeapon_speed())) * 10
+                                > (int) (Math.random() * 100) + 1 && Data.player.getCurrenthp() > 0 && Data.enemy.getCurrenthp() > 0) {
+                            textArea.append(Data.enemy.getWarrior_name() + " attacks again! ");
+                        } else {
+                            enemyTurn = false;
+                            playerTurn = true;
+                            flagPlayerAttack = true;
+                        }
+                        textArea.setSelectionStart(textArea.getText().length());
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
             }
-        }
-    }
 
-    public void reloadScreen () {
-        image1 = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
-                File.separator + "Characters" + File.separator + Data.player.getWarrior_image_path());
-        ImageIcon imagen1 = new ImageIcon(image1.getImage().getScaledInstance(270,320, Image.SCALE_DEFAULT));
-        imagenPlayer1.setIcon(imagen1);
+            // We add those functionalities at the end of the fight to change the button to results button
 
-        infoPlayer1[1].setText(String.valueOf(Data.player.getStrength() + Data.playerWeapon.getWeapon_strength()));
-        infoPlayer1[3].setText(String.valueOf(Data.player.getDefense()));
-        infoPlayer1[5].setText(String.valueOf(Data.player.getAgility()));
-        infoPlayer1[7].setText(String.valueOf(Data.player.getSpeed() + Data.playerWeapon.getWeapon_speed()));
-
-        image2 = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
-                File.separator + "Characters" + File.separator + Data.enemy.getWarrior_image_path());
-        ImageIcon imagen2=new ImageIcon(image2.getImage().getScaledInstance(270,320, Image.SCALE_DEFAULT));
-        imagenPlayer2.setIcon(imagen2);
-
-        infoPlayer2[1].setText(String.valueOf(Data.enemy.getStrength() + Data.enemyWeapon.getWeapon_strength()));
-        infoPlayer2[3].setText(String.valueOf(Data.enemy.getDefense()));
-        infoPlayer2[5].setText(String.valueOf(Data.enemy.getAgility()));
-        infoPlayer2[7].setText(String.valueOf(Data.enemy.getSpeed() + Data.enemyWeapon.getWeapon_speed()));
+            button[0].setVisible(false);
+            button[1].setEnabled(true);
+            button[1].setVisible(true);
+            imageIcon = new ImageIcon();
+            button[1].setIcon(imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                    File.separator + "Icons" + File.separator + "results_button.png"));
+        });
+        // We use the thread we created
+        thread.start();
     }
 }
+

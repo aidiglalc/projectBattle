@@ -1,6 +1,12 @@
+import java.awt.*;
 import java.util.ArrayList;
 
-public class CombatAlgorithm {
+// This class has two method, one to generate a random character to fight with and the other to get their weapon
+
+public class EnemyGenerator {
+
+    // In the generation method we remove the character the player has selected
+
     public Character getOponentCharacter() {
         ArrayList<Character> characters = new ArrayList();
         ArrayList<Character> allCharacters = null;
@@ -17,6 +23,8 @@ public class CombatAlgorithm {
         }
         return characters.get((int)(Math.random() * characters.size()));
     }
+
+    // This method seeks to have a weapon that the enemy race could handle
 
     public Weapon getOponentWeapon(String race) {
         ArrayList<Weapon> weaponList = new Weapon().getWeapons(race);
