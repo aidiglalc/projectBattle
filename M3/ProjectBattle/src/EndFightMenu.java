@@ -195,7 +195,7 @@ public class EndFightMenu extends JPanel{
                 buttons[2].setIcon(imageIcon);
                 principalFrame = (Window) Frame.getFrames()[0];
                 new DatabaseConnection().updateGameDatabase();
-                principalFrame.dispose();
+                System.exit(1);
             }
 
             @Override

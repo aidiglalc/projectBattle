@@ -147,6 +147,127 @@ public class Fight extends JPanel {
             }
         });
 
+        button[2].addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mouseClicked(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "speedx1_pressed.png");
+                button[2].setIcon(imageIcon);
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "speedx1.png");
+                button[2].setIcon(imageIcon);
+                Data.gameSpeed = 500;
+                button[2].setEnabled(false);
+                button[3].setEnabled(true);
+                button[4].setEnabled(true);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "speedx1_hover.png");
+                button[2].setIcon(imageIcon);
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "speedx1.png");
+                button[2].setIcon(imageIcon);
+
+            }
+        });
+
+        button[3].addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mouseClicked(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "speedx2_pressed.png");
+                button[3].setIcon(imageIcon);
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "speedx2.png");
+                button[3].setIcon(imageIcon);
+                Data.gameSpeed = 250;
+                button[2].setEnabled(true);
+                button[3].setEnabled(false);
+                button[4].setEnabled(true);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "speedx2_hover.png");
+                button[3].setIcon(imageIcon);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "speedx2.png");
+                button[3].setIcon(imageIcon);
+
+            }
+        });
+
+        button[4].addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mouseClicked(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "speedx5_pressed.png");
+                button[4].setIcon(imageIcon);
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "speedx5.png");
+                button[4].setIcon(imageIcon);
+                Data.gameSpeed = 100;
+                button[2].setEnabled(true);
+                button[3].setEnabled(true);
+                button[4].setEnabled(false);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "speedx5_hover.png");
+                button[4].setIcon(imageIcon);
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Icons" + File.separator + "speedx5.png");
+                button[4].setIcon(imageIcon);
+            }
+        });
+
         // Here we construct the player portrait with the other pieces we have
 
         playerHpPanel.add(playerRemainingHpLabel);
@@ -188,6 +309,9 @@ public class Fight extends JPanel {
 
         buttonPanel.add(button[0], BorderLayout.CENTER); //ADDING BUTTON0 ON PANEL4(INF)
         buttonPanel.add(button[1], BorderLayout.CENTER); //ADDING BUTTON1 ON PANEL4(INF)
+        buttonPanel.add(button[2]);
+        buttonPanel.add(button[3]);
+        buttonPanel.add(button[4]);
 
         // Add the two main panels to the background and add them to this class
 
@@ -319,7 +443,7 @@ public class Fight extends JPanel {
         imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
                 File.separator + "Icons" + File.separator + "results_button.png");
 
-        button[1] = new JButton("Results");
+        button[1] = new JButton(imageIcon);
         button[0].setPreferredSize(new Dimension(200, 50));
         button[1].setPreferredSize(new Dimension(200, 50));
         button[1].setEnabled(false);
@@ -328,6 +452,31 @@ public class Fight extends JPanel {
         button[0].setBorderPainted(false);
         button[1].setContentAreaFilled(false);
         button[1].setBorderPainted(false);
+
+        imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                File.separator + "Icons" + File.separator + "speedx1.png");
+
+        button[2] = new JButton(imageIcon);
+        button[2].setPreferredSize(new Dimension(200, 50));
+        button[2].setEnabled(false);
+        button[2].setContentAreaFilled(false);
+        button[2].setBorderPainted(false);
+
+        imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                File.separator + "Icons" + File.separator + "speedx2.png");
+
+        button[3] = new JButton(imageIcon);
+        button[3].setPreferredSize(new Dimension(200, 50));
+        button[3].setContentAreaFilled(false);
+        button[3].setBorderPainted(false);
+
+        imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                File.separator + "Icons" + File.separator + "speedx5.png");
+
+        button[4] = new JButton(imageIcon);
+        button[4].setPreferredSize(new Dimension(200, 50));
+        button[4].setContentAreaFilled(false);
+        button[4].setBorderPainted(false);
 
         // And now we create the labels for the player
 

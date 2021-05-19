@@ -1,4 +1,4 @@
-DROP DATABASE battle_database;
+# DROP DATABASE battle_database;
 CREATE DATABASE battle_database;
 USE battle_database;
 

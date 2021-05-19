@@ -43,14 +43,17 @@ public class MainMenu extends JPanel {
                 else {
                     Data.enemy = new EnemyGenerator().getOponentCharacter();
                     Data.enemyWeapon = new EnemyGenerator().getOponentWeapon(Data.enemy.getRace());
-                    Data.playerName = new DatabaseConnection().getPlayerName();
-                    new DatabaseConnection().insertPlayerDatabase();
-                    new DatabaseConnection().insertGameDatabase();
-                    principalFrame = (Window) Frame.getFrames()[0];
-                    Data.player.setCurrenthp(Data.player.getHp());
-                    Data.enemy.setCurrenthp(Data.enemy.getHp());
-                    principalFrame.getFight().reloadScreen();
-                    principalFrame.swapWiew("Fighting Menu");
+                    String playerName = new DatabaseConnection().getPlayerName();
+                    if (playerName != null) {
+                        Data.playerName = playerName;
+                        new DatabaseConnection().insertPlayerDatabase();
+                        new DatabaseConnection().insertGameDatabase();
+                        principalFrame = (Window) Frame.getFrames()[0];
+                        Data.player.setCurrenthp(Data.player.getHp());
+                        Data.enemy.setCurrenthp(Data.enemy.getHp());
+                        principalFrame.getFight().reloadScreen();
+                        principalFrame.swapWiew("Fighting Menu");
+                    }
                 }
             }
             @Override
@@ -218,7 +221,7 @@ public class MainMenu extends JPanel {
                         File.separator + "Icons" + File.separator + "exit.png");
                 jButtons[4].setIcon(icon);
                 principalFrame = (Window) Frame.getFrames()[0];
-                principalFrame.dispose();
+                System.exit(1);
             }
             @Override
             public void mouseEntered(MouseEvent e) {

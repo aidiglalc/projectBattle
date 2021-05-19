@@ -36,14 +36,17 @@ class DatabaseConnection {
                 }
             }
 
-        } catch (SQLException throwables) {
+        } catch(SQLSyntaxErrorException throwables) {
+            throwables.printStackTrace();
+            JOptionPane.showMessageDialog(null, "ERROR: battle_database not found in your databases.", "Database loading Error", JOptionPane.ERROR_MESSAGE);
+        }
+        catch (SQLException throwables) {
             throwables.printStackTrace();
             JOptionPane.showMessageDialog(null, "ERROR: Wrong User / Password for the database", "Database loading Error", JOptionPane.ERROR_MESSAGE);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "ERROR: Add the driver to connect Java with MySQL.", "Database loading Error", JOptionPane.ERROR_MESSAGE);
         }
-
         return characters;
     }
 
@@ -62,6 +65,9 @@ class DatabaseConnection {
                         rs.getString(5), rs.getString(6), rs.getInt(7)));
             }
 
+        } catch(SQLSyntaxErrorException throwables) {
+            throwables.printStackTrace();
+            JOptionPane.showMessageDialog(null, "ERROR: battle_database not found in your databases.", "Database loading Error", JOptionPane.ERROR_MESSAGE);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             JOptionPane.showMessageDialog(null, "ERROR: Wrong User / Password for the database", "Database loading Error", JOptionPane.ERROR_MESSAGE);
@@ -92,6 +98,9 @@ class DatabaseConnection {
                 topTen.add(player);
             }
 
+        } catch(SQLSyntaxErrorException throwables) {
+            throwables.printStackTrace();
+            JOptionPane.showMessageDialog(null, "ERROR: battle_database not found in your databases.", "Database loading Error", JOptionPane.ERROR_MESSAGE);
         } catch(ClassNotFoundException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "ERROR: Add the driver to connect Java with MySQL.", "Database loading Error", JOptionPane.ERROR_MESSAGE);
@@ -108,11 +117,21 @@ class DatabaseConnection {
         String transformConfirmDialog;
         JTextField textField = new JTextField();
         JPasswordField passwordField = new JPasswordField();
+        int option;
 
-        JOptionPane.showConfirmDialog(null, textField, "Database User", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+        option = JOptionPane.showConfirmDialog(null, textField, "Database User", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (option == JOptionPane.CANCEL_OPTION) {
+            System.exit(1);
+        }
+
         Data.dataBaseUser = textField.getText();
 
-        JOptionPane.showConfirmDialog(null, passwordField, "Database Password", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+        option = JOptionPane.showConfirmDialog(null, passwordField, "Database Password", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+        if (option == JOptionPane.CANCEL_OPTION) {
+            System.exit(1);
+        }
+
         transformConfirmDialog = new String(passwordField.getPassword());
         Data.dataBasePassword = transformConfirmDialog;
     }
@@ -138,6 +157,9 @@ class DatabaseConnection {
 
             Data.playerId = rs.getInt(1);
 
+        } catch(SQLSyntaxErrorException throwables) {
+            throwables.printStackTrace();
+            JOptionPane.showMessageDialog(null, "ERROR: battle_database not found in your databases.", "Database loading Error", JOptionPane.ERROR_MESSAGE);
         } catch(ClassNotFoundException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "ERROR: Add the driver to connect Java with MySQL.", "Database loading Error", JOptionPane.ERROR_MESSAGE);
@@ -163,6 +185,9 @@ class DatabaseConnection {
 
             Data.gameId = rs.getInt(1);
 
+        } catch(SQLSyntaxErrorException throwables) {
+            throwables.printStackTrace();
+            JOptionPane.showMessageDialog(null, "ERROR: battle_database not found in your databases.", "Database loading Error", JOptionPane.ERROR_MESSAGE);
         } catch(ClassNotFoundException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "ERROR: Add the driver to connect Java with MySQL.", "Database loading Error", JOptionPane.ERROR_MESSAGE);
@@ -189,6 +214,9 @@ class DatabaseConnection {
                     ", " + Data.enemy.getWarrior_id() + ", " + Data.enemyWeapon.getWeapon_id() + ", " + (Data.enemy.getHp() - Data.enemy.getCurrenthp()) +
                     ", " + (Data.player.getHp() - Data.player.getCurrenthp()) + ", " + points +")");
 
+        } catch(SQLSyntaxErrorException throwables) {
+            throwables.printStackTrace();
+            JOptionPane.showMessageDialog(null, "ERROR: battle_database not found in your databases.", "Database loading Error", JOptionPane.ERROR_MESSAGE);
         } catch(ClassNotFoundException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "ERROR: Add the driver to connect Java with MySQL.", "Database loading Error", JOptionPane.ERROR_MESSAGE);
@@ -213,6 +241,9 @@ class DatabaseConnection {
             rs.updateInt(6, Data.winningStreak);
             rs.updateRow();
 
+        } catch(SQLSyntaxErrorException throwables) {
+            throwables.printStackTrace();
+            JOptionPane.showMessageDialog(null, "ERROR: battle_database not found in your databases.", "Database loading Error", JOptionPane.ERROR_MESSAGE);
         } catch(ClassNotFoundException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "ERROR: Add the driver to connect Java with MySQL.", "Database loading Error", JOptionPane.ERROR_MESSAGE);
@@ -222,6 +253,8 @@ class DatabaseConnection {
         }
 
     }
+
+    // With this method we get the player Name and ensure its made of letters and numbers
 
     public String getPlayerName() {
         String message = "Write your name:";
@@ -233,26 +266,31 @@ class DatabaseConnection {
         while (!flagCharacter) {
             count = 0;
             name = JOptionPane.showInputDialog(null, message, "Player Name", JOptionPane.INFORMATION_MESSAGE);
-            chars = name.toCharArray();
-            flagCharacter = true;
+            if (name != null){
+                chars = name.toCharArray();
+                flagCharacter = true;
 
-            if (name.equalsIgnoreCase("")) {
-                flagCharacter = false;
-                message = "Write your name, don't let this blank:";
-            }
+                if (name.equalsIgnoreCase("")) {
+                    flagCharacter = false;
+                    message = "Write your name, don't let this blank:";
+                }
 
-            else {
-                for (char c : chars) {
-                    count++;
-                    if (!java.lang.Character.isDigit(c) && !java.lang.Character.isLetter(c)) {
+                else {
+                    for (char c : chars) {
+                        count++;
+                        if (!java.lang.Character.isDigit(c) && !java.lang.Character.isLetter(c)) {
+                            flagCharacter = false;
+                            message = "Write your name, only letters and numbers:";
+                        }
+                    }
+                    if (count > 20) {
                         flagCharacter = false;
-                        message = "Write your name, only letters and numbers:";
+                        message = "Write your name, not more than 20 characters:";
                     }
                 }
-                if (count > 20) {
-                    flagCharacter = false;
-                    message = "Write your name, not more than 20 characters:";
-                }
+            }
+            else {
+                flagCharacter = true;
             }
         }
         return name;

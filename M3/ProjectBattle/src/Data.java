@@ -8,10 +8,10 @@ public class Data {
     protected static Weapon enemyWeapon = new Weapon (0, "EnemyWeapon", 0, 0, "null", "null", 0);
     protected static int points = 0;
     protected static int winningStreak = 0;
-    protected static String playerName = "pepe2";
+    protected static String playerName = "";
     protected static int playerId = 0;
     protected static int gameId = 0;
-    protected static int gameSpeed = 1000;
+    protected static int gameSpeed = 500;
 
     // Database variables
 
