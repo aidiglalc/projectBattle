@@ -94,32 +94,4 @@ public class Weapon {
                 ", weapon_points=" + weapon_points +
                 '}';
     }
-
-    // This method returns an array list of weapons of the selected race, if "" is inserted as parameter, it returns all weapons
-
-    public ArrayList<Weapon> getWeapons(String race) {
-        ArrayList<Weapon> weapons = new ArrayList<Weapon>();
-        String url = "jdbc:mysql://localhost/battle_database?serverTimezone=UTC";
-        String user = "root";
-        String password = "t32i6zcf9893715";
-        String query = "SELECT * FROM weapons WHERE weapon_race LIKE \"%" + race + "%\";";
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection(url, user, password);
-            Statement stm = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            ResultSet rs = stm.executeQuery(query);
-            while (rs.next()) {
-                weapons.add(new Weapon(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4),
-                        rs.getString(5), rs.getString(6), rs.getInt(7)));
-            }
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            JOptionPane.showMessageDialog(null, "ERROR: Check Database Password in getWeapons method.", "Weapon loading Error", JOptionPane.ERROR_MESSAGE);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "ERROR: Add the driver to connect Java with MySQL.", "Weapon loading Error", JOptionPane.ERROR_MESSAGE);
-        }
-        return weapons;
-    }
 }

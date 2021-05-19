@@ -12,9 +12,9 @@ public class EnemyGenerator {
         ArrayList<Character> allCharacters = null;
 
         for (int i = 0; i < 3; i ++) {
-            if (i == 0) allCharacters = new Character().getRace("Human");
-            else if (i == 1) allCharacters = new Character().getRace("Elf");
-            else if (i == 2) allCharacters = new Character().getRace("Dwarf");
+            if (i == 0) allCharacters = new DatabaseConnection().getRace("Human");
+            else if (i == 1) allCharacters = new DatabaseConnection().getRace("Elf");
+            else if (i == 2) allCharacters = new DatabaseConnection().getRace("Dwarf");
             for (int j = 0; j < allCharacters.size(); j++) {
                 if (allCharacters.get(j).getWarrior_id() != Data.player.getWarrior_id()){
                     characters.add(allCharacters.get(j));
@@ -27,7 +27,7 @@ public class EnemyGenerator {
     // This method seeks to have a weapon that the enemy race could handle
 
     public Weapon getOponentWeapon(String race) {
-        ArrayList<Weapon> weaponList = new Weapon().getWeapons(race);
+        ArrayList<Weapon> weaponList = new DatabaseConnection().getWeapons(race);
         return weaponList.get((int)(Math.random() * weaponList.size()));
     }
 

@@ -2,11 +2,6 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -21,7 +16,7 @@ public class Ranking extends JPanel {
     private JLabel titleNameLabel;
     private JLabel titlePointsLabel;
     private JPanel invisiblePanelPoints;
-    private ArrayList top = getTopTen();
+    private ArrayList top = new DatabaseConnection().getTopTen();
     private BackgroundImageRanking backgroundImageRanking = new BackgroundImageRanking();
     private ImageIcon imageIcon;
     private JButton turnBackButton;
@@ -183,7 +178,55 @@ public class Ranking extends JPanel {
             jPanels[0].add(jLabels[i]);
             jPanels[1].add(name[i]);
             jPanels[2].add(points[i]);
+        }
 
+        if (top.size() < 10) {
+            for (int i = top.size(); i < 10; i++){
+                // Name labels
+
+                name[i] = new JLabel("", SwingConstants.CENTER);
+                name[i].setFont(new Font("", Font.PLAIN, 20));
+                name[i].setPreferredSize((new Dimension(500, 32)));
+
+
+                // Points labels
+
+                points[i] = new JLabel("", SwingConstants.CENTER);
+                points[i].setFont(new Font("", Font.PLAIN, 20));
+                points[i].setPreferredSize((new Dimension(500, 32)));
+
+
+                if (i == 0)  {
+                    name[i].setForeground(Color.YELLOW);
+                    points[i].setForeground(Color.YELLOW);
+                }
+                else if (i == 1)  {
+                    name[i].setForeground(Color.LIGHT_GRAY);
+                    points[i].setForeground(Color.LIGHT_GRAY);
+                }
+                else if (i == 2)  {
+                    name[i].setForeground(Color.ORANGE);
+                    points[i].setForeground(Color.ORANGE);
+                }
+                else {
+                    name[i].setForeground(Color.WHITE);
+                    points[i].setForeground(Color.WHITE);
+                }
+
+                // Position Labels
+                imageIcon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+                        File.separator + "Numbers" + File.separator + (i + 1) + ".png");
+                jLabels[i] = new JLabel(imageIcon, SwingConstants.CENTER);
+                jLabels[i].setFont(new Font("", Font.PLAIN, 20));
+                jLabels[i].setPreferredSize((new Dimension(45, 32)));
+                jLabels[i].setVisible(false);
+
+                // We add them into their respective panels
+
+                jPanels[0].add(jLabels[i]);
+                jPanels[1].add(name[i]);
+                jPanels[2].add(points[i]);
+            }
         }
 
         // Here we make the turn back button
@@ -201,51 +244,14 @@ public class Ranking extends JPanel {
         turnBackButtonPanel.add(turnBackButton);
         turnBackButtonPanel.setOpaque(false);
 
-//        titleNameLabel.setBorder(BorderFactory.createLineBorder(Color.black));
-//        titlePointsLabel.setBorder(BorderFactory.createLineBorder(Color.black));
-//        jPanels[0].setBorder(BorderFactory.createLineBorder(Color.black));
-//        jPanels[1].setBorder(BorderFactory.createLineBorder(Color.black));
-//        jPanels[2].setBorder(BorderFactory.createLineBorder(Color.black));
-    }
-
-    // In this method we get an array list of the top ten players ordered by points, we get those players from the database
-
-    public ArrayList getTopTen() {
-        ArrayList topTen = new ArrayList();
-        ArrayList player;
-
-        try {
-            String user="root";
-            String password="t32i6zcf9893715";
-            String url="jdbc:mysql://localhost/battle_database?serverTimezone=UTC";
-
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection(url, user, password);
-
-            Statement stm = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            ResultSet rs = stm.executeQuery("SELECT players.player_name, game.total_points FROM game INNER JOIN players ON game.player_id = players.player_id ORDER BY total_points DESC LIMIT 10;");
-
-            while (rs.next()) {
-                player = new ArrayList();
-                player.add(rs.getString(1));
-                player.add(rs.getInt(2));
-                topTen.add(player);
-            }
-
-        } catch(ClassNotFoundException e) {
-            e.printStackTrace();
-
-        } catch(SQLException e) {
-            e.printStackTrace();
-        }
-        return topTen;
     }
 
     // This method reloads the ranking
 
     public void reloadRanking() {
-        top = getTopTen();
+        ArrayList top = new DatabaseConnection().getTopTen();
         for (int i = 0; i < top.size(); i++){
+            jLabels[i].setVisible(true);
             name[i].setText((String)((ArrayList)top.get(i)).get(0));
             points[i].setText((String.valueOf(((ArrayList)top.get(i)).get(1))));
         }

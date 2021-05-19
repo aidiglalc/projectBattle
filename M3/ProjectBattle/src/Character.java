@@ -142,36 +142,4 @@ public class Character {
                 ", race_points=" + race_points +
                 '}';
     }
-
-// With this method you input a race that exists in the database and returns an ArrayList of the characters of that race
-
-    public ArrayList<Character> getRace(String race) {
-        ArrayList<Character> characters = new ArrayList<Character>();
-        String url = "jdbc:mysql://localhost/battle_database?serverTimezone=UTC";
-        String user = "root";
-        String password = "t32i6zcf9893715";
-        String query = "SELECT warriors.warrior_id, warriors.warrior_name, warriors.warrior_image_path, warriors.warrior_lore, race.race, race.hp, race.strength,\n" +
-                "race.defense, race.agility, race.speed, race.race_points FROM warriors INNER JOIN race ON warriors.warrior_race = race.race_id " +
-                "WHERE race.race = \"" + race + "\";";
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection(url, user, password);
-            Statement stm = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            ResultSet rs = stm.executeQuery(query);
-            while (rs.next()) {
-                characters.add(new Character(rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4),
-                        rs.getString(5), rs.getInt(6), rs.getInt(7),rs.getInt(8), rs.getInt(9),
-                        rs.getInt(10), rs.getInt(11)));
-            }
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            JOptionPane.showMessageDialog(null, "ERROR: Check Database Password in getRace method.", "Character loading Error", JOptionPane.ERROR_MESSAGE);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "ERROR: Add the driver to connect Java with MySQL.", "Character loading Error", JOptionPane.ERROR_MESSAGE);
-        }
-
-        return characters;
-    }
 }

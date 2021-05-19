@@ -273,3 +273,19 @@ class CombatCharacterBackground extends JPanel {
         fondo.drawImage(image.getImage(),0,0,this);
     }
 }
+
+class ResultsMainPanel extends JPanel {
+    private ImageIcon image = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
+            File.separator + "Backgrounds" + File.separator + "results_main_panel_background.png");
+
+    public ResultsMainPanel() {
+        setPreferredSize(new Dimension(900, 400));
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D fondo = (Graphics2D) g;
+        fondo.drawImage(image.getImage(),0,0,this);
+    }
+}

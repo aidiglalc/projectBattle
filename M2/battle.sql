@@ -34,7 +34,7 @@ FOREIGN KEY (warrior_race) REFERENCES race(race_id)
 
 CREATE TABLE players (
 player_id INTEGER AUTO_INCREMENT PRIMARY KEY,
-player_name VARCHAR(25)
+player_name VARCHAR(20)
 );
 
 CREATE TABLE game (
@@ -95,16 +95,8 @@ VALUES ("Erdrick", 1, "Human_1.JPG", "<html>When he turned 18, he embarked to fi
 ("Thalkrum", 3, "Dwarf_2.JPG", "<html>He is dedicated to giving his services as a bodyguard, for a price.</html>"),
 ("Garzhulg", 3, "Dwarf_3.JPG", "<html>He is searching for the legendary pickaxe that can mine orichalcum.</html>");
 
-INSERT INTO players VALUES (1, "Pruebas");
+INSERT INTO players (player_name) VALUES ("Carlos"), ("Aida"), ("Sandra");
 INSERT INTO game (player_id, warrior_id, warrior_weapon_id, total_points, enemies_defeated) 
-VALUES (1, 1, 1, 15, 0), 
-(1, 1, 1, 13, 0),
-(1, 1, 1, 14, 0),
-(1, 1, 1, 11, 0),
-(1, 1, 1, 12, 0),
-(1, 1, 1, 13, 0),
-(1, 1, 1, 18, 0),
-(1, 1, 1, 1, 0),
-(1, 1, 1, 3, 0),
-(1, 1, 1, 4, 0),
-(1, 1, 1, 7, 0);
+VALUES (1, 9, 1, 21, 0), 
+(2, 4, 1, 19, 0),
+(3, 6, 1, 19, 0);

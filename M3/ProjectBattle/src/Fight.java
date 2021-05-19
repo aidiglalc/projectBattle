@@ -104,8 +104,12 @@ public class Fight extends JPanel {
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
-                principalFrame = (Window) Frame.getFrames()[0];
-                principalFrame.swapWiew("Main Menu");
+
+                if (Data.player.getCurrenthp() > 0) {
+                    Data.winningStreak += 1;
+                    Data.points += Data.enemy.getRace_points() + Data.enemyWeapon.getWeapon_points();
+                }
+
                 button[1].setEnabled(false);
                 button[1].setVisible(false);
                 button[0].setVisible(true);
@@ -119,7 +123,11 @@ public class Fight extends JPanel {
                         File.separator + "Icons" + File.separator + "results_button.png");
                 button[1].setIcon(imageIcon);
 
+                new DatabaseConnection().insertBattleDatabase();
 
+                principalFrame = (Window) Frame.getFrames()[0];
+                principalFrame.getEndFightMenu().reloadScreen();
+                principalFrame.swapWiew("End Fight Menu");
             }
 
             @Override
@@ -229,7 +237,6 @@ public class Fight extends JPanel {
         playerSumPanel.setLayout(new BoxLayout(playerSumPanel, BoxLayout.Y_AXIS));
         playerSumPanel.setPreferredSize(new Dimension(200,50));
         playerSumPanel.add(playerProgressBar);
-        playerSumPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         playerSumPanel.setOpaque(false);
 
 
@@ -241,7 +248,6 @@ public class Fight extends JPanel {
         enemySumPanel.setLayout(new BoxLayout(enemySumPanel, BoxLayout.Y_AXIS));
         enemySumPanel.setPreferredSize(new Dimension(200,50));
         enemySumPanel.add(enemyProgressBar);
-        enemySumPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         enemySumPanel.setOpaque(false);
 
         playerStats = new JPanel();
@@ -464,7 +470,7 @@ public class Fight extends JPanel {
                                     if ((int)(((float)Data.enemy.getCurrenthp() / (float)Data.enemy.getHp()) * 100) <= 20) enemyProgressBar.setForeground(Color.RED);
                                     else if ((int)(((float)Data.enemy.getCurrenthp() / (float)Data.enemy.getHp()) * 100) <= 50) enemyProgressBar.setForeground(Color.YELLOW);
                                     try {
-                                        Thread.sleep(50);
+                                        Thread.sleep(Data.gameSpeed / 20);
                                     } catch (InterruptedException e) {
                                         e.printStackTrace();
                                     }
@@ -488,7 +494,7 @@ public class Fight extends JPanel {
                         textArea.setSelectionStart(textArea.getText().length());
 
                         try {
-                            Thread.sleep(1000);
+                            Thread.sleep(Data.gameSpeed);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -512,7 +518,7 @@ public class Fight extends JPanel {
                                     if ((int)(((float)Data.player.getCurrenthp() / (float)Data.player.getHp()) * 100) <= 20) playerProgressBar.setForeground(Color.RED);
                                     else if ((int)(((float)Data.player.getCurrenthp() / (float)Data.player.getHp()) * 100) <= 50) playerProgressBar.setForeground(Color.YELLOW);
                                     try {
-                                        Thread.sleep(50);
+                                        Thread.sleep(Data.gameSpeed / 20);
                                     } catch (InterruptedException e) {
                                         e.printStackTrace();
                                     }
@@ -536,7 +542,7 @@ public class Fight extends JPanel {
                         }
                         textArea.setSelectionStart(textArea.getText().length());
                         try {
-                            Thread.sleep(1000);
+                            Thread.sleep(Data.gameSpeed);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }

@@ -141,7 +141,7 @@ public class WeaponSelectionMenu extends JPanel {
 
         // We get all the weapons and prepare de UI to select the weapons
 
-        weaponArrayList = new Weapon().getWeapons(race);
+        weaponArrayList = new DatabaseConnection().getWeapons(race);
 
         invisiblePanelWeaponImage.setPreferredSize(new Dimension(448, 12));
         weaponPanel.add(invisiblePanelWeaponImage);

@@ -48,7 +48,7 @@ public class CharacterSelectionMenu extends JPanel {
                 public void mouseReleased(MouseEvent e) {
                     super.mouseReleased(e);
                     Data.player = characters.get(index);
-                    Data.playerWeapon = null;
+                    Data.playerWeapon = new Weapon (0, "null", 0, 0, "null", "null", 0);
                     principalFrame = (Window) Frame.getFrames()[0];
                     principalFrame.swapWiew("Main Menu");
                 }
@@ -187,7 +187,7 @@ public class CharacterSelectionMenu extends JPanel {
 
         // We obtain the array of characters that we have
 
-        characters = new Character().getRace(race);
+        characters = new DatabaseConnection().getRace(race);
 
         // We make each character token
 

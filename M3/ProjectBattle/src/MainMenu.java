@@ -38,12 +38,17 @@ public class MainMenu extends JPanel {
                 icon = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
                         File.separator + "Icons" + File.separator + "fight.png");
                 jButtons[0].setIcon(icon);
-                if (Data.playerWeapon == null) JOptionPane.showMessageDialog(null,
+                if (Data.playerWeapon.getWeapon_id() == 0) JOptionPane.showMessageDialog(null,
                         "Select your weapon before to begin the fight!", "No Weapon Selected!", JOptionPane.ERROR_MESSAGE);
                 else {
                     Data.enemy = new EnemyGenerator().getOponentCharacter();
                     Data.enemyWeapon = new EnemyGenerator().getOponentWeapon(Data.enemy.getRace());
+                    Data.playerName = new DatabaseConnection().getPlayerName();
+                    new DatabaseConnection().insertPlayerDatabase();
+                    new DatabaseConnection().insertGameDatabase();
                     principalFrame = (Window) Frame.getFrames()[0];
+                    Data.player.setCurrenthp(Data.player.getHp());
+                    Data.enemy.setCurrenthp(Data.enemy.getHp());
                     principalFrame.getFight().reloadScreen();
                     principalFrame.swapWiew("Fighting Menu");
                 }
