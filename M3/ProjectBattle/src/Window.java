@@ -63,9 +63,9 @@ public class Window extends JFrame {
 
         add(mainPanel);
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Si cierra la ventana, finaliza el programa
-        setResizable(false); //No permitir que la ventana se redimensione
-        setVisible(true); //hacer visible (debe ir siempre el ultimo)
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
+        setVisible(true);
     }
 
     public Ranking getRanking() {
