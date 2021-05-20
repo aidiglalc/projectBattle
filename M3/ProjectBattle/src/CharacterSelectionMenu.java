@@ -8,7 +8,7 @@ import java.util.ArrayList;
 // This class is the panel that we show in the character selection
 
 public class CharacterSelectionMenu extends JPanel {
-    private JPanel backgroundImageCharacterSelection;
+    private BackgroundImage backgroundImageCharacterSelection;
     private ArrayList<Character> characters;
     private JPanel screenPanel;
     private JPanel invisiblePanel[] = new JPanel[3];
@@ -26,9 +26,9 @@ public class CharacterSelectionMenu extends JPanel {
     public CharacterSelectionMenu(String race) {
         this.race = race;
 
-        if (race.equalsIgnoreCase("human")) backgroundImageCharacterSelection = new BackgroundImageHumanSelection();
-        else if (race.equalsIgnoreCase("elf")) backgroundImageCharacterSelection = new BackgroundImageElfSelection();
-        else if (race.equalsIgnoreCase("dwarf")) backgroundImageCharacterSelection = new BackgroundImageDwarfSelection();
+        if (race.equalsIgnoreCase("human")) backgroundImageCharacterSelection = new BackgroundImage(1280, 720, "HumanSelectionBackground.jpg");
+        else if (race.equalsIgnoreCase("elf")) backgroundImageCharacterSelection = new BackgroundImage(1280, 720, "ElfSelectionBackground.png");
+        else if (race.equalsIgnoreCase("dwarf")) backgroundImageCharacterSelection = new BackgroundImage(1280, 720, "DwarfSelectionBackground.jpg");
 
         initComponent();
 
@@ -135,17 +135,17 @@ public class CharacterSelectionMenu extends JPanel {
         // We check the race to set the background
 
         if (race.equalsIgnoreCase("Human")) {
-            characterButtonsPanel = new HumanBackgroundSelection();
-            characterDescriptionsPanel = new HumanBackgroundSelection();
+            characterButtonsPanel = new BackgroundImage(448, 450, "HumanBackground.png");
+            characterDescriptionsPanel = new BackgroundImage(448, 450, "HumanBackground.png");
         }
         else if (race.equalsIgnoreCase("Elf")) {
-            characterButtonsPanel = new ElfBackgroundSelection();
-            characterDescriptionsPanel = new ElfBackgroundSelection();
+            characterButtonsPanel = new BackgroundImage(448, 450, "ElfBackground.png");
+            characterDescriptionsPanel = new BackgroundImage(448, 450, "ElfBackground.png");
         }
 
         else if (race.equalsIgnoreCase("Dwarf")) {
-            characterButtonsPanel = new DwarfBackgroundSelection();
-            characterDescriptionsPanel = new DwarfBackgroundSelection();
+            characterButtonsPanel = new BackgroundImage(448, 450, "DwarfBackground.png");
+            characterDescriptionsPanel = new BackgroundImage(448, 450, "DwarfBackground.png");
         }
 
         // We create the panels to set all the items how we want

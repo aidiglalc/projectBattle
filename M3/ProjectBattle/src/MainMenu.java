@@ -7,7 +7,7 @@ import java.io.File;
 // This class shows the pannel for the main menu
 
 public class MainMenu extends JPanel {
-    private BackgroundImageTitle backgroundImageTitle = new BackgroundImageTitle();
+    private BackgroundImage backgroundImageTitle = new BackgroundImage(1280, 720, "TitleBackground.jpg");
     private JButton jButtons[] = new JButton[5];
     private JPanel jPanels[] = new JPanel[5];
     private JPanel jPanelsInvisible[] = new JPanel[6];

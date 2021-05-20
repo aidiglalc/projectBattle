@@ -7,7 +7,7 @@ import java.io.File;
 // This class shows the panel for the class selection menu
 
 public class RaceSelectionMenu extends JPanel {
-    private BackgroundImageCharacterSelection backgroundImageCharacterSelection = new BackgroundImageCharacterSelection();
+    private BackgroundImage backgroundImageCharacterSelection = new BackgroundImage(1280, 720, "CharacterSelectionBackground.jpg");
     private JButton jButtons[] = new JButton[3];
     private JPanel jPanel;
     private JPanel jPanelInvisible[] = new JPanel[3];

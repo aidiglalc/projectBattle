@@ -4,16 +4,15 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 
+// This class is to make the panel to show the end of the fight results
+
 public class EndFightMenu extends JPanel{
-    private BackgroundImageFighting backgroundImageFighting = new BackgroundImageFighting();
-
+    private BackgroundImage backgroundImageEndFight = new BackgroundImage(1280, 720, "ResultsBackground.png");
     private ImageIcon imageIcon_title;
-
     private JPanel buttonPanel = new JPanel();
     private JButton buttons[] = new JButton[3];
     private ImageIcon imageIcon_button[] = new ImageIcon[2];
-
-    private JPanel mainPanel = new ResultsMainPanel();
+    private JPanel mainPanel = new BackgroundImage(900, 400, "results_main_panel_background.png");
     private JPanel statsPanel[] = new JPanel[2];
     private JPanel stats_invisiblePanel[] = new JPanel[5];
     private JLabel statsLabel[] = new JLabel[4];
@@ -41,6 +40,7 @@ public class EndFightMenu extends JPanel{
 
 
         initComponent();
+
         mainPanel.setLayout(new GridLayout(1,2));
 
         statsPanel[0].add(statsLabel[0]);
@@ -75,13 +75,17 @@ public class EndFightMenu extends JPanel{
         mainPanel.add(statsPanel[0]);
         mainPanel.add(statsPanel[1]);
 
-        backgroundImageFighting.add(titleLabel);
-        backgroundImageFighting.add(mainPanel);
-        backgroundImageFighting.add(keepFighting);
-        backgroundImageFighting.add(buttonPanel);
+        backgroundImageEndFight.add(titleLabel);
+        backgroundImageEndFight.add(mainPanel);
+        backgroundImageEndFight.add(keepFighting);
+        backgroundImageEndFight.add(buttonPanel);
 
+        this.add(backgroundImageEndFight);
 
-        this.add(backgroundImageFighting);
+        // Here we make the logic of the buttons
+
+        // This buttons redirects to the fight or the class selection menu if the player lost the battle (and saves the data into de database),
+        // also heals the two fighters if it goes to the next battle
 
         buttons[0].addMouseListener(new MouseAdapter() {
             @Override
@@ -135,6 +139,8 @@ public class EndFightMenu extends JPanel{
             }
         });
 
+        // This button returns to the main menu, also saves the data into de database
+
         buttons[1].addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -177,6 +183,8 @@ public class EndFightMenu extends JPanel{
             }
         });
 
+        // This button closes the application, also saves the data into the database
+
         buttons[2].addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -218,7 +226,6 @@ public class EndFightMenu extends JPanel{
     }
 
     private void initComponent() {
-        //Yes/No buttons
 
         keepFighting = new JLabel();
         winnerName = new JLabel("PROBIS PROBIS", SwingConstants.CENTER);
@@ -250,6 +257,7 @@ public class EndFightMenu extends JPanel{
             buttonPanel.setOpaque(false);
         }
         buttonPanel.setPreferredSize(new Dimension(1280, 100));
+
         //Title
 
         imageIcon_title = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
@@ -290,7 +298,6 @@ public class EndFightMenu extends JPanel{
         statsLabel[3].setIcon(imageIcon_s3);
         infoLabel[3] = new JLabel("Prueba 3", SwingConstants.CENTER); //PRUEBA PARA VER QUE EL LABEL SE MAQUETA BIEN, HAY QUE ELIMINARLO
 
-        //Winner/Loser
         outcomeImage = new ImageIcon(System.getProperty("user.dir") + File.separator + "src" + File.separator + "Images" +
                     File.separator + "Icons" + File.separator + "winner.png"); //loser
         ImageIcon imageIcon_oc = new ImageIcon(outcomeImage.getImage().getScaledInstance(300, 50, Image.SCALE_DEFAULT));
@@ -304,9 +311,8 @@ public class EndFightMenu extends JPanel{
         playerImage = new JLabel(imageIcon_player);
         playerImage.setIcon(imageIcon_p);
 
-
-
         //Info label color
+
         for (int i = 0; i < infoLabel.length; i++) {
             infoLabel[i].setForeground(Color.WHITE);
             infoLabel[i].setFont(new Font("", Font.BOLD, 16));
@@ -319,6 +325,9 @@ public class EndFightMenu extends JPanel{
         statsPanel[1].setOpaque(false);
         mainPanel.setOpaque(false);
     }
+
+    // With this method we reload the screen with the actual data
+
         public void reloadScreen () {
         infoLabel[0].setText(String.valueOf(Data.enemy.getWarrior_name())); //Bot's name
         infoLabel[1].setText(String.valueOf(Data.enemyWeapon.getWeapon_name())); //Bot's weapon

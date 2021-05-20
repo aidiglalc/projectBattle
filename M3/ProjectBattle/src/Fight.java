@@ -18,7 +18,7 @@ public class Fight extends JPanel {
     private JPanel playerHpPanel;
     private JPanel enemyHpPanel;
     private JButton button[] = new JButton[5];
-    private BackgroundImageFighting backgroundImageFighting = new BackgroundImageFighting();
+    private BackgroundImage backgroundImageFighting = new BackgroundImage(1280, 720, "FightBackground.png");
     private static JTextArea textArea;
     private JScrollPane scrollPane;
     private static JProgressBar playerProgressBar;
@@ -51,7 +51,9 @@ public class Fight extends JPanel {
 
         initComponent();
 
-        // We add the two buttons and their functionality
+        // We add the five buttons and their functionality
+
+        // This button make the fighters fight
 
         button[0].addMouseListener(new MouseAdapter() {
             @Override
@@ -90,6 +92,7 @@ public class Fight extends JPanel {
             }
         });
 
+        // This buttons make the player go to the result screen and resets the panels and hp bar of the fighters
 
         button[1].addMouseListener(new MouseAdapter() {
             @Override
@@ -147,6 +150,8 @@ public class Fight extends JPanel {
             }
         });
 
+        // This buttons turns the battle speed to normal
+
         button[2].addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -188,6 +193,8 @@ public class Fight extends JPanel {
             }
         });
 
+        // This buttons turns the battle speed to x2
+
         button[3].addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -227,6 +234,8 @@ public class Fight extends JPanel {
 
             }
         });
+
+        // This buttons turns the battle speed to x5
 
         button[4].addMouseListener(new MouseAdapter() {
             @Override
@@ -353,7 +362,7 @@ public class Fight extends JPanel {
 
         // Here we set the panels of the player and the enemy
 
-        playerPanel = new CombatCharacterBackground();
+        playerPanel = new BackgroundImage(345, 460, "CombatCharacterBackground.png");
         playerPanel.setOpaque(false);
         playerPanel.setPreferredSize(new Dimension(345, 460));
 
@@ -364,7 +373,7 @@ public class Fight extends JPanel {
         playerSumPanel.setOpaque(false);
 
 
-        enemyPanel = new CombatCharacterBackground();
+        enemyPanel = new BackgroundImage(345, 460, "CombatCharacterBackground.png");
         enemyPanel.setOpaque(false);
         enemyPanel.setPreferredSize(new Dimension(345, 460));
 

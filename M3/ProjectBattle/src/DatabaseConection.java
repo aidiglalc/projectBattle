@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 
+// This class manages all the methods that have a connection with SQL
+
 class DatabaseConnection {
 
     // With this method you input a race that exists in the database and returns an ArrayList of the characters of that race

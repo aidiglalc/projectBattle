@@ -1,3 +1,6 @@
+
+// With this class we instanciate the humans
+
 public class Human extends Character {
 
     public Human() {

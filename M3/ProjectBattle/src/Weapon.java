@@ -1,6 +1,3 @@
-import javax.swing.*;
-import java.sql.*;
-import java.util.ArrayList;
 
 // This class have all the stats of the weapons
 // This class also have a method to get an ArrayList of the weapons of the race selected

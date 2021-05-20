@@ -1,3 +1,6 @@
+
+// With this class we instanciate the dwarfs
+
 public class Dwarf extends Character {
     public Dwarf() {
     }
