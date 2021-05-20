@@ -3,7 +3,6 @@ import java.sql.*;
 import java.util.ArrayList;
 
 // This class have all the stats of the character and the stat of currenthp to know how to heal that character
-// This class also have a method to get an ArrayList of the race selected
 
 public class Character {
     private int warrior_id;

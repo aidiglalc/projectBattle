@@ -1,3 +1,6 @@
+
+// This class manages all the variables that multiple classes must have access
+
 public class Data {
 
     // Game Variables

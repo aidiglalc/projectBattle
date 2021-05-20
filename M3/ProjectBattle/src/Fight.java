@@ -51,7 +51,9 @@ public class Fight extends JPanel {
 
         initComponent();
 
-        // We add the two buttons and their functionality
+        // We add the five buttons and their functionality
+
+        // This button make the fighters fight
 
         button[0].addMouseListener(new MouseAdapter() {
             @Override
@@ -90,6 +92,7 @@ public class Fight extends JPanel {
             }
         });
 
+        // This buttons make the player go to the result screen and resets the panels and hp bar of the fighters
 
         button[1].addMouseListener(new MouseAdapter() {
             @Override
@@ -147,6 +150,8 @@ public class Fight extends JPanel {
             }
         });
 
+        // This buttons turns the battle speed to normal
+
         button[2].addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -188,6 +193,8 @@ public class Fight extends JPanel {
             }
         });
 
+        // This buttons turns the battle speed to x2
+
         button[3].addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -227,6 +234,8 @@ public class Fight extends JPanel {
 
             }
         });
+
+        // This buttons turns the battle speed to x5
 
         button[4].addMouseListener(new MouseAdapter() {
             @Override

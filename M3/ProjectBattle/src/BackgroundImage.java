@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 
-// Contains all the Jpanels with the background for each scene that we have in the game
+// This class is to make the panels with background
 
 public class BackgroundImage extends JPanel {
     private ImageIcon image;

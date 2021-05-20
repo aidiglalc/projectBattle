@@ -1,3 +1,6 @@
+
+// With this class we instanciate the Elfs
+
 public class Elf extends Character {
 
     public Elf() {
