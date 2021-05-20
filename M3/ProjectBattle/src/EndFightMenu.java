@@ -107,6 +107,7 @@ public class EndFightMenu extends JPanel{
                     Data.player.setCurrenthp(Data.player.getHp());
                     principalFrame = (Window) Frame.getFrames()[0];
                     Data.enemy = new EnemyGenerator().getOponentCharacter();
+                    Data.enemyWeapon = new EnemyGenerator().getOponentWeapon(Data.enemy.getRace());
                     Data.player.setCurrenthp(Data.player.getHp());
                     Data.enemy.setCurrenthp(Data.enemy.getHp());
                     principalFrame.getFight().reloadScreen();
