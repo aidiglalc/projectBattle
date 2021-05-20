@@ -5,7 +5,7 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 
 public class EndFightMenu extends JPanel{
-    private BackgroundImageFighting backgroundImageFighting = new BackgroundImageFighting();
+    private BackgroundImage backgroundImageEndFight = new BackgroundImage(1280, 720, "ResultsBackground.png");
 
     private ImageIcon imageIcon_title;
 
@@ -13,7 +13,7 @@ public class EndFightMenu extends JPanel{
     private JButton buttons[] = new JButton[3];
     private ImageIcon imageIcon_button[] = new ImageIcon[2];
 
-    private JPanel mainPanel = new ResultsMainPanel();
+    private JPanel mainPanel = new BackgroundImage(900, 400, "results_main_panel_background.png");
     private JPanel statsPanel[] = new JPanel[2];
     private JPanel stats_invisiblePanel[] = new JPanel[5];
     private JLabel statsLabel[] = new JLabel[4];
@@ -75,13 +75,13 @@ public class EndFightMenu extends JPanel{
         mainPanel.add(statsPanel[0]);
         mainPanel.add(statsPanel[1]);
 
-        backgroundImageFighting.add(titleLabel);
-        backgroundImageFighting.add(mainPanel);
-        backgroundImageFighting.add(keepFighting);
-        backgroundImageFighting.add(buttonPanel);
+        backgroundImageEndFight.add(titleLabel);
+        backgroundImageEndFight.add(mainPanel);
+        backgroundImageEndFight.add(keepFighting);
+        backgroundImageEndFight.add(buttonPanel);
 
 
-        this.add(backgroundImageFighting);
+        this.add(backgroundImageEndFight);
 
         buttons[0].addMouseListener(new MouseAdapter() {
             @Override

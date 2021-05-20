@@ -18,7 +18,7 @@ public class Fight extends JPanel {
     private JPanel playerHpPanel;
     private JPanel enemyHpPanel;
     private JButton button[] = new JButton[5];
-    private BackgroundImageFighting backgroundImageFighting = new BackgroundImageFighting();
+    private BackgroundImage backgroundImageFighting = new BackgroundImage(1280, 720, "FightBackground.png");
     private static JTextArea textArea;
     private JScrollPane scrollPane;
     private static JProgressBar playerProgressBar;
@@ -353,7 +353,7 @@ public class Fight extends JPanel {
 
         // Here we set the panels of the player and the enemy
 
-        playerPanel = new CombatCharacterBackground();
+        playerPanel = new BackgroundImage(345, 460, "CombatCharacterBackground.png");
         playerPanel.setOpaque(false);
         playerPanel.setPreferredSize(new Dimension(345, 460));
 
@@ -364,7 +364,7 @@ public class Fight extends JPanel {
         playerSumPanel.setOpaque(false);
 
 
-        enemyPanel = new CombatCharacterBackground();
+        enemyPanel = new BackgroundImage(345, 460, "CombatCharacterBackground.png");
         enemyPanel.setOpaque(false);
         enemyPanel.setPreferredSize(new Dimension(345, 460));
 

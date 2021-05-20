@@ -17,12 +17,12 @@ public class Ranking extends JPanel {
     private JLabel titlePointsLabel;
     private JPanel invisiblePanelPoints;
     private ArrayList top = new DatabaseConnection().getTopTen();
-    private BackgroundImageRanking backgroundImageRanking = new BackgroundImageRanking();
+    private BackgroundImage backgroundImageRanking = new BackgroundImage(1280, 720, "RankingBackground.png");
     private ImageIcon imageIcon;
     private JButton turnBackButton;
     private JPanel turnBackButtonPanel;
     private Window principalFrame;
-    private BackgroundImageTopTen backgroundImageTopTen = new BackgroundImageTopTen();
+    private BackgroundImage backgroundImageTopTen = new BackgroundImage(600, 460, "TopTenRankingBackground.png");
 
     public Ranking() {
         initComponent();

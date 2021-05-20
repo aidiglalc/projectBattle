@@ -6,9 +6,9 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class WeaponSelectionMenu extends JPanel {
-    private JPanel backgroundImageWeaponSelection = new BackgroundImageWeaponSelection();
-    private JPanel weaponPanel = new BackgroundWeapons();
-    private JPanel weaponDescriptionPanel = new BackgroundWeapons();
+    private BackgroundImage backgroundImageWeaponSelection = new BackgroundImage(1280, 720, "WeaponSelectionBackground.jpg");
+    private BackgroundImage weaponPanel = new BackgroundImage(448, 450, "weapons_background.png");
+    private BackgroundImage weaponDescriptionPanel = new BackgroundImage(448, 450, "weapons_background.png");
     private JPanel mainPanel = new JPanel();
     private JPanel turnBackButtonPanel = new JPanel();
     private JPanel titlePanel = new JPanel();
