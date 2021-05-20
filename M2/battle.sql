@@ -1,4 +1,4 @@
-DROP DATABASE battle_database;
+# DROP DATABASE battle_database;
 CREATE DATABASE battle_database;
 USE battle_database;
 
@@ -28,24 +28,22 @@ warrior_id INTEGER AUTO_INCREMENT PRIMARY KEY,
 warrior_name VARCHAR(25),
 warrior_race INTEGER,
 warrior_image_path VARCHAR(100),
+warrior_lore VARCHAR(100),
 FOREIGN KEY (warrior_race) REFERENCES race(race_id)
 );
 
 CREATE TABLE players (
 player_id INTEGER AUTO_INCREMENT PRIMARY KEY,
-player_name VARCHAR(25)
+player_name VARCHAR(20)
 );
 
 CREATE TABLE game (
 game_id INTEGER AUTO_INCREMENT PRIMARY KEY,
 player_id INTEGER,
-player_name VARCHAR(25),
 warrior_id INTEGER,
 warrior_weapon_id INTEGER,
 total_points INTEGER,
 enemies_defeated INTEGER,
-total_injuries_caused INTEGER,
-total_injuries_suffered INTEGER,
 FOREIGN KEY (player_id) REFERENCES players(player_id),
 FOREIGN KEY (warrior_id) REFERENCES warriors(warrior_id),
 FOREIGN KEY (warrior_weapon_id) REFERENCES weapons(weapon_id)
@@ -71,33 +69,34 @@ FOREIGN KEY (opponent_weapon_id) REFERENCES weapons(weapon_id)
 );
 
 INSERT INTO weapons(weapon_name, weapon_strength, weapon_speed, weapon_race, weapon_image_path, weapon_points) 
-VALUES ("Dagger", 0, 3, "Human, Elf", null, 10),
-("Sword", 1, 1, "Human, Elf, Dwarf", null, 10),
-("Axe", 3, 0, "Human, Dwarf", null, 10),
-("Double Swords", 2, 2, "Human, Elf", null, 14),
-("Scimitar", 1, 2, "Human, Elf", null, 14),
-("Bow", 1, 5, "Elf", null, 15),
-("Katana", 2, 3, "Human", null, 18),
-("Dirk", 0, 4, "Human, Elf, Dwarf", null, 12),
-("Two-handed Axe", 5, 0, "Dwarf", null, 20);
-
-select * from weapons;
+VALUES ("Dagger", 0, 3, "Human, Elf", "dagger.png", 10),
+("Sword", 1, 1, "Human, Elf, Dwarf", "sword.png", 10),
+("Axe", 3, 0, "Human, Dwarf", "axe.png", 10),
+("Double Swords", 2, 2, "Human, Elf", "double_swords.png", 14),
+("Scimitar", 1, 2, "Human, Elf", "scimitar.png", 14),
+("Bow", 1, 5, "Elf", "bow.png", 15),
+("Katana", 2, 3, "Human", "katana.png", 18),
+("Dirk", 0, 4, "Human, Elf, Dwarf", "dirk.png", 12),
+("Two-handed Axe", 5, 0, "Dwarf", "two-handed_axe.png", 20);
 
 INSERT INTO race(race, hp, strength, defense, agility, speed, race_points)
 VALUES ("Human", 50, 5, 3, 6, 5, 20),
 ("Elf", 40, 4, 2, 7, 7, 19),
 ("Dwarf", 60, 6, 4, 5, 3, 21);
 
-select * from race;
+INSERT INTO warriors(warrior_name, warrior_race, warrior_image_path, warrior_lore)
+VALUES ("Erdrick", 1, "Human_1.JPG", "<html>When he turned 18, he embarked to finish the quest that his father began.</html>"),
+("Firion", 1, "Human_2.JPG", "<html>Losing his brother in war, he joined the militia to avenge him.</html>"),
+("Rydia", 1, "Human_3.png", "<html>Born with magical powers, she travels the world to learn more about herself.</html>"),
+("Valindra", 2, "Elf_1.JPG", "<html>She embarked on an adventure to reclaim the eye of the sun.</html>"),
+("Taegen", 2, "Elf_2.JPG", "<html>Cursed by a Demon he seeks the cure to see the sun again.</html>"),
+("Elanor", 2, "Elf_3.JPG", "<html>She left the elven city Avalon to see the beauty of the outside world.</html>"),
+("Mukhir", 3, "Dwarf_1.JPG", "<html>Tired of the life of the mine, he wants to live a life full of adventures.</html>"),
+("Thalkrum", 3, "Dwarf_2.JPG", "<html>He is dedicated to giving his services as a bodyguard, for a price.</html>"),
+("Garzhulg", 3, "Dwarf_3.JPG", "<html>He is searching for the legendary pickaxe that can mine orichalcum.</html>");
 
-INSERT INTO warriors(warrior_name, warrior_race, warrior_image_path)
-VALUES ("Erdrick", 1, null),
-("Firion", 1, null),
-("Taegen", 2, null),
-("Valindra", 2, null),
-("Saphielle", 2, null),
-("Mukhir", 3, null),
-("Thalgreak", 3, null),
-("Gathul", 3, null);
-
-select * from warriors;
+INSERT INTO players (player_name) VALUES ("Carlos"), ("Aida"), ("Sandra");
+INSERT INTO game (player_id, warrior_id, warrior_weapon_id, total_points, enemies_defeated) 
+VALUES (1, 9, 1, 21, 0), 
+(2, 4, 1, 19, 0),
+(3, 6, 1, 19, 0);
